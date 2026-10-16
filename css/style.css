@@ -104,12 +104,12 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-title .line { display: block; }
 .gradient-text {
-  background: linear-gradient(100deg, var(--c1), var(--c2) 35%, var(--c3) 65%, var(--c4));
-  background-size: 250% 100%;
+  background: linear-gradient(100deg, var(--c1), var(--c2) 25%, var(--c3) 50%, var(--c4) 75%, var(--c1));
+  background-size: 200% 100%;
   -webkit-background-clip: text; background-clip: text; color: transparent;
   animation: shimmer 8s linear infinite;
 }
-@keyframes shimmer { to { background-position: 250% 0; } }
+@keyframes shimmer { to { background-position: -200% 0; } }
 .hero-sub { max-width: 620px; margin: 28px auto 0; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 36px; }
 
