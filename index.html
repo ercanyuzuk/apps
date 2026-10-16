@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EY Apps — Ercan Yüzük</title>
+  <meta name="description" content="Ercan Yüzük'ün geliştirdiği macOS, iPhone ve Apple TV uygulamaları: EYConsol, eyiptv, EYNetScanner ve daha fazlası.">
+  <meta name="theme-color" content="#07080d">
+  <link rel="canonical" href="https://apps.ercanyuzuk.com/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EY Apps — Ercan Yüzük">
+  <meta property="og:description" content="Sade, hızlı ve gizliliğe saygılı Apple uygulamaları.">
+  <meta property="og:url" content="https://apps.ercanyuzuk.com/">
+  <meta property="og:image" content="https://apps.ercanyuzuk.com/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" aria-label="Ana sayfa">
+      <span class="brand-mark">EY</span><span class="brand-text">apps</span>
+    </a>
+    <nav class="nav-links" id="navLinks"></nav>
+    <a class="nav-cta" href="#iletisim">İletişim</a>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-orbs" aria-hidden="true">
+        <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+      </div>
+      <p class="eyebrow reveal"><span class="dot"></span> macOS · iPhone · Apple TV</p>
+      <h1 class="hero-title">
+        <span class="line reveal"><span class="scramble" data-text="Küçük uygulamalar,">Küçük uygulamalar,</span></span>
+        <span class="line reveal"><span class="gradient-text">büyük kolaylıklar.</span></span>
+      </h1>
+      <p class="hero-sub reveal">
+        Günlük işlerimde ihtiyaç duyduğum araçları kendim yazıyorum. Sade, hızlı, reklamsız ve
+        verinizi toplamayan uygulamalar — hepsi burada.
+      </p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary magnetic" href="#uygulamalar"><span>Uygulamaları keşfet</span><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14m0 0-6-6m6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn-ghost magnetic" href="#yakinda"><span>Yol haritası</span></a>
+      </div>
+
+      <div class="hero-icons reveal" id="heroIcons" aria-hidden="true"></div>
+
+      <div class="stats reveal">
+        <div class="stat"><b data-count="3">0</b><span>Uygulama</span></div>
+        <div class="stat"><b data-count="3">0</b><span>Platform</span></div>
+        <div class="stat"><b data-count="0">0</b><span>Reklam & takip</span></div>
+        <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Swift & SwiftUI</span></div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marquee"></div>
+    </div>
+
+    <!-- APP CARDS -->
+    <section class="section" id="uygulamalar">
+      <div class="section-head reveal">
+        <p class="kicker">01 — Uygulamalar</p>
+        <h2>Her biri tek bir işi <em>çok iyi</em> yapar.</h2>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <!-- APP DETAILS (rendered from js/apps.js) -->
+    <div id="details"></div>
+
+    <!-- PRINCIPLES -->
+    <section class="section" id="ilkeler">
+      <div class="section-head reveal">
+        <p class="kicker">02 — İlkeler</p>
+        <h2>Her uygulamada aynı söz.</h2>
+      </div>
+      <div class="principles">
+        <article class="principle reveal tilt">
+          <div class="p-icon"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Gizlilik önce gelir</h3>
+          <p>Hesap yok, analitik yok, takip yok. Verileriniz cihazınızdan çıkmaz.</p>
+        </article>
+        <article class="principle reveal tilt">
+          <div class="p-icon"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></div>
+          <h3>Yerel ve hızlı</h3>
+          <p>Swift ve SwiftUI ile yazıldı; Apple çatıları dışında bağımlılık neredeyse yok.</p>
+        </article>
+        <article class="principle reveal tilt">
+          <div class="p-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8"/></svg></div>
+          <h3>Sade arayüz</h3>
+          <p>Gereksiz menü yok. Açarsınız, işinizi yaparsınız, kapatırsınız.</p>
+        </article>
+        <article class="principle reveal tilt">
+          <div class="p-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></div>
+          <h3>Reklamsız</h3>
+          <p>Ekranınızda yalnızca kullandığınız şey olur. Reklam ve açılır pencere yok.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="section" id="yakinda">
+      <div class="section-head reveal">
+        <p class="kicker">03 — Yakında</p>
+        <h2>Atölyede neler var?</h2>
+      </div>
+      <div class="roadmap" id="roadmap"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="iletisim">
+      <div class="contact-card reveal">
+        <div class="contact-glow" aria-hidden="true"></div>
+        <p class="kicker">04 — İletişim</p>
+        <h2>Bir fikriniz, öneriniz ya da<br>bir hata mı buldunuz?</h2>
+        <p>Geri bildirimler uygulamaları daha iyi yapıyor. Yazmaktan çekinmeyin.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary magnetic" href="mailto:ercanyuzuk@gmail.com"><span>E-posta gönder</span></a>
+          <a class="btn btn-ghost magnetic" href="https://www.ercanyuzuk.com" target="_blank" rel="noopener"><span>ercanyuzuk.com</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year">2026</span> Ercan Yüzük</span>
+    <span class="footer-mid">Swift ile, Türkiye'de yapıldı.</span>
+    <a href="#top">Başa dön ↑</a>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Ekran görüntüsü">
+    <button class="lb-close" aria-label="Kapat">×</button>
+    <button class="lb-nav lb-prev" aria-label="Önceki">‹</button>
+    <img alt="">
+    <button class="lb-nav lb-next" aria-label="Sonraki">›</button>
+  </div>
+
+  <script src="js/apps.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
