@@ -7,7 +7,8 @@ Ercan Yüzük'ün uygulamalarını (EYConsol, eyiptv, EYNetScanner) tanıtan sta
 1. İkonu `assets/icons/<id>.png` (512 px), ekran görüntülerini `assets/shots/` altına koyun.
 2. `js/apps.js` içindeki `APPS` dizisine yeni bir nesne ekleyin (`visual`: `terminal`, `phones` veya `tv`).
 3. App Store bağlantısı hazır olunca `links.appStore` alanını doldurun; boş alan "Yakında" olarak görünür.
-4. Yakında gelecekler için `ROADMAP` dizisini düzenleyin.
+4. macOS DMG için dosyayı `downloads/` altına koyun, `download` alanına adı, boyutu ve `shasum -a 256` çıktısını yazın.
+5. Yakında gelecekler için `ROADMAP` dizisini düzenleyin.
 
 ## Yerelde çalıştırma
 

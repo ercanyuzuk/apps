@@ -5,6 +5,8 @@
  *   visual: "terminal" (macOS pencere animasyonu), "phones" (iPhone ekran görüntüleri),
  *           "tv" (Apple TV + iPhone ekran görüntüleri)
  *   links:  boş bırakılan bağlantı ("") "Yakında" olarak gösterilir.
+ *   download: DMG'yi downloads/ klasörüne koyup dosya adı, boyut ve SHA-256 yazın
+ *             (shasum -a 256 dosya.dmg). links.download aynı yolu göstermeli.
  *
  * ROADMAP: yakında gelecek uygulamalar / fikirler.
  */
@@ -29,8 +31,15 @@ window.APPS = [
       { t: "Snippet'ler", d: "Kayıtlı çok satırlı komutlar; tek tık ya da ⌃⌘1…9 ile gönderme." },
       { t: "Oturum kaydı", d: "Renk kodlarından arındırılmış düz metin log, isteğe bağlı zaman damgası." }
     ],
+    requirements: ["macOS 14+", "Apple Silicon & Intel"],
+    download: {
+      file: "downloads/EYConsol-0.1.0.dmg",
+      size: "4,4 MB",
+      sha256: "a8aa99eca8c79fc83d519edcfd0d7267f532c3fc21dd56f861d7a770cd44b4ee",
+      note: "Apple tarafından onaylanmış (notarized) Developer ID imzalı."
+    },
     links: {
-      download: "",
+      download: "downloads/EYConsol-0.1.0.dmg",
       support: "mailto:ercanyuzuk@gmail.com?subject=EYConsol"
     }
   },

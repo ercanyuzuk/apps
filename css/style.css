@@ -214,6 +214,10 @@ a { color: inherit; text-decoration: none; }
 .app .summary { color: var(--muted); margin: 0; }
 .app .meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 22px 0 0; }
 .app .note { margin-top: 18px; font-size: 13.5px; color: var(--dim); border-left: 2px solid var(--a); padding-left: 12px; }
+.dl-info { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; font-size: 13.5px; color: var(--muted); }
+.dl-info code { display: inline-flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%; font-family: var(--mono); font-size: 12px; color: var(--dim); padding: 6px 6px 6px 12px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.03); }
+.dl-info button { font: inherit; color: var(--text); background: var(--card-hi); border: 1px solid var(--line); border-radius: 7px; padding: 3px 9px; cursor: pointer; }
+.dl-info button:hover { border-color: var(--a); }
 .app .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
 .app .btn-primary { background: linear-gradient(120deg, var(--a), var(--a2)); box-shadow: 0 10px 40px -12px var(--a), inset 0 1px 0 rgba(255,255,255,.4); }
 .app .btn { padding: 12px 20px; font-size: 14.5px; }

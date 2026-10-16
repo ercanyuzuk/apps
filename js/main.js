@@ -38,7 +38,7 @@
 
   const linkBtn = (href, label, primary) =>
     href
-      ? `<a class="btn ${primary ? "btn-primary" : "btn-ghost"} magnetic" href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}><span>${label}</span></a>`
+      ? `<a class="btn ${primary ? "btn-primary" : "btn-ghost"} magnetic" href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}${href.endsWith(".dmg") ? " download" : ""}><span>${label}</span></a>`
       : `<span class="btn ${primary ? "btn-primary" : "btn-ghost"} disabled"><span>${label} · Yakında</span></span>`;
 
   const visualFor = (a) => {
@@ -94,10 +94,11 @@
           </div>
           <p class="lead reveal">${esc(a.tagline)}</p>
           <p class="summary reveal">${esc(a.summary)}</p>
-          <div class="meta reveal">${a.platforms.map((p) => `<span class="chip">${esc(p)}</span>`).join("")}<span class="chip">v${esc(a.version)}</span></div>
+          <div class="meta reveal">${a.platforms.map((p) => `<span class="chip">${esc(p)}</span>`).join("")}<span class="chip">v${esc(a.version)}</span>${(a.requirements || []).map((r) => `<span class="chip">${esc(r)}</span>`).join("")}</div>
           ${a.note ? `<p class="note reveal">${esc(a.note)}</p>` : ""}
+          ${a.download ? `<div class="dl-info reveal"><span>✓ ${esc(a.download.note)} DMG'yi açıp uygulamayı Applications klasörüne sürükleyin.</span><code title="SHA-256">SHA-256 ${esc(a.download.sha256.slice(0, 16))}…<button type="button" data-copy="${esc(a.download.sha256)}">Kopyala</button></code></div>` : ""}
           <div class="actions reveal">
-            ${"download" in a.links ? linkBtn(a.links.download, "İndir (DMG)", true) : linkBtn(a.links.appStore, "App Store", true)}
+            ${"download" in a.links ? linkBtn(a.links.download, `İndir${a.download ? " · " + esc(a.download.size) : " (DMG)"}`, true) : linkBtn(a.links.appStore, "App Store", true)}
             ${a.links.support ? linkBtn(a.links.support, "Destek") : ""}
             ${a.links.privacy ? linkBtn(a.links.privacy, "Gizlilik") : ""}
           </div>
@@ -306,6 +307,16 @@
     if (e.key === "Escape") lbClose();
     if (e.key === "ArrowLeft") lbShow(lbIdx - 1);
     if (e.key === "ArrowRight") lbShow(lbIdx + 1);
+  });
+
+  /* ---------- copy checksum ---------- */
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-copy]");
+    if (!b) return;
+    navigator.clipboard?.writeText(b.dataset.copy).then(() => {
+      b.textContent = "Kopyalandı ✓";
+      setTimeout(() => (b.textContent = "Kopyala"), 1600);
+    });
   });
 
   /* ---------- EYConsol terminal animation ---------- */
