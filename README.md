@@ -1,18 +1,30 @@
 # apps.ercanyuzuk.com
 
-Ercan Yüzük'ün uygulamalarını (EYConsol, eyiptv, EYNetScanner) tanıtan statik site. Build adımı yok; GitHub Pages doğrudan yayınlar.
+Ercan Yüzük'ün uygulamalarını (EYCleaner, EYConsol, eyiptv, EYNetScanner) tanıtan statik site. GitHub Pages doğrudan yayınlar.
 
-## Yeni uygulama eklemek
+Sayfalar arama motorları için statik HTML olarak üretilir: tüm içerik `src/apps.mjs` dosyasındadır,
+`node scripts/build.mjs` şunları yeniden yazar (üretilen dosyaları elle düzenlemeyin, commit'leyin):
+
+- `index.html` — ana sayfa
+- `<id>/index.html` — her uygulamanın detay sayfası (ör. `/eycleaner/`)
+- `sitemap.xml`, `robots.txt`
+
+Her sayfada canonical, Open Graph/Twitter etiketleri ve JSON-LD yapısal veri (SoftwareApplication,
+BreadcrumbList, FAQPage; ana sayfada WebSite + ItemList) bulunur. `js/main.js` yalnızca animasyon ve etkileşimleri yönetir.
+
+## Yeni uygulama eklemek / güncellemek
 
 1. İkonu `assets/icons/<id>.png` (512 px), ekran görüntülerini `assets/shots/` altına koyun.
-2. `js/apps.js` içindeki `APPS` dizisine yeni bir nesne ekleyin (`visual`: `terminal`, `phones` veya `tv`).
-3. App Store bağlantısı hazır olunca `links.appStore` alanını doldurun; boş alan "Yakında" olarak görünür.
+2. `src/apps.mjs` içindeki `APPS` dizisine bir nesne ekleyin (`visual`: `terminal`, `cleaner`, `phones` veya `tv`);
+   `seo`, `about` ve `faq` alanlarını doldurun.
+3. App Store bağlantıları `stores` dizisindedir; `href` boşsa düğme "Yakında" olarak görünür.
 4. macOS DMG için dosyayı `downloads/` altına koyun, `download` alanına adı, boyutu ve `shasum -a 256` çıktısını yazın.
-5. Yakında gelecekler için `ROADMAP` dizisini düzenleyin.
+5. `node scripts/build.mjs` çalıştırın.
 
 ## Yerelde çalıştırma
 
 ```sh
+node scripts/build.mjs
 python3 -m http.server 8765
 # http://localhost:8765
 ```
@@ -23,3 +35,4 @@ python3 -m http.server 8765
 - `CNAME` dosyası `apps.ercanyuzuk.com` alan adını tanımlar.
 - DNS: `apps` için `CNAME` kaydı → `<github-kullanici-adi>.github.io`.
 - Sertifika verildikten sonra "Enforce HTTPS" işaretleyin.
+- Yayından sonra Google Search Console'da alan adını doğrulayıp `https://apps.ercanyuzuk.com/sitemap.xml` gönderin.

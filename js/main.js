@@ -1,125 +1,19 @@
 (() => {
   "use strict";
 
-  const APPS = window.APPS || [];
-  const ROADMAP = window.ROADMAP || [];
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = matchMedia("(pointer: fine)").matches;
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  /* old one-page anchors (/#eyconsol) now live on their own pages */
+  if (location.hash) {
+    const page = $(`.cards a[href="/${CSS.escape(location.hash.slice(1))}/"]`);
+    if (page) { location.replace(page.href); return; }
+  }
+
   $("#year").textContent = new Date().getFullYear();
-
-  /* ---------- render ---------- */
-  const arrow = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-  $("#navLinks").innerHTML =
-    APPS.map((a) => `<a href="#${a.id}">${esc(a.name)}</a>`).join("") + '<a href="#yakinda">Yakında</a>';
-
-  $("#heroIcons").innerHTML = APPS.map(
-    (a) => `<a href="#${a.id}" style="--glow:${a.accent}" tabindex="-1"><img src="${a.icon}" alt="${esc(a.name)}" width="96" height="96"></a>`
-  ).join("");
-
-  const words = ["SSH", "Serial", "SFTP", "Ping", "Port Scan", "Traceroute", "DNS", "Canlı TV", "Apple TV", "SwiftUI", "Keychain", "macOS", "iPhone", "Gizlilik", "Reklamsız"];
-  const mq = words.map((w) => `<span>${esc(w)}</span>`).join("");
-  $("#marquee").innerHTML = mq + mq;
-
-  $("#cards").innerHTML = APPS.map(
-    (a, i) => `
-    <a class="card reveal tilt" href="#${a.id}" style="--a:${a.accent};--d:${i * 0.08}s">
-      <img class="card-icon" src="${a.icon}" alt="" width="78" height="78" loading="lazy">
-      <h3>${esc(a.name)}</h3>
-      <p class="tag">${esc(a.tagline)}</p>
-      <div class="platforms">${a.platforms.map((p) => `<span class="chip">${esc(p)}</span>`).join("")}</div>
-      <span class="arrow">${arrow}</span>
-    </a>`
-  ).join("");
-
-  const linkBtn = (href, label, primary) =>
-    href
-      ? `<a class="btn ${primary ? "btn-primary" : "btn-ghost"} magnetic" href="${href}" ${href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}${href.endsWith(".dmg") ? " download" : ""}><span>${label}</span></a>`
-      : `<span class="btn ${primary ? "btn-primary" : "btn-ghost"} disabled"><span>${label} · Yakında</span></span>`;
-
-  const visualFor = (a) => {
-    if (a.visual === "terminal") {
-      return `
-      <div class="visual reveal" style="--d:.1s">
-        <div class="window tilt-soft">
-          <div class="win-bar"><i></i><i></i><i></i>
-            <div class="win-tabs"><span class="on">sw01</span><span>usbserial-1420</span><span>zsh</span></div>
-          </div>
-          <div class="win-body"><div class="pane" data-term="ssh"></div><div class="pane" data-term="serial"></div></div>
-          <div class="win-status"><span><b>●</b> SSH bağlı · 9600 8N1</span><span>Yazı Tipi · JetBrains Mono 13</span></div>
-        </div>
-        <div class="float-key k1"><em>⌘D</em>Paneli böl</div>
-        <div class="float-key k2"><em>⌥⌘I</em>Tüm panellere yaz</div>
-      </div>`;
-    }
-    const imgs = (list, alt) => list.map((s, i) => `<img src="${s}" alt="${esc(alt)} ekran görüntüsü ${i + 1}" loading="lazy" decoding="async"${i === 0 ? ' class="on"' : ""}>`).join("");
-    const dots = (n) => `<div class="dots">${Array.from({ length: n }, (_, i) => `<button aria-label="Görsel ${i + 1}"${i === 0 ? ' class="on"' : ""}></button>`).join("")}</div>`;
-    if (a.visual === "tv") {
-      return `
-      <div class="visual reveal carousel" style="--d:.1s">
-        <div class="stage tv-stage">
-          <div class="tv"><div class="screen" data-slides>${imgs(a.shots.tv, a.name + " Apple TV")}</div></div>
-          <div class="phone"><div class="screen" data-slides>${imgs(a.shots.phone, a.name + " iPhone")}</div></div>
-        </div>
-        ${dots(a.shots.tv.length)}
-      </div>`;
-    }
-    const p = a.shots.phone;
-    const n = p.length;
-    return `
-      <div class="visual reveal carousel" style="--d:.1s">
-        <div class="stage phones">
-          <div class="phone back"><div class="screen" data-slides data-offset="${n - 1}">${imgs(p, a.name)}</div></div>
-          <div class="phone back2"><div class="screen" data-slides data-offset="1">${imgs(p, a.name)}</div></div>
-          <div class="phone front"><div class="screen" data-slides>${imgs(p, a.name)}</div></div>
-          <div class="radar" aria-hidden="true"><i style="left:30%;top:28%"></i><i style="left:68%;top:40%;animation-delay:-1s"></i><i style="left:44%;top:70%;animation-delay:-2s"></i></div>
-        </div>
-        ${dots(n)}
-      </div>`;
-  };
-
-  $("#details").innerHTML = APPS.map(
-    (a, i) => `
-    <section class="app" id="${a.id}" style="--a:${a.accent};--a2:${a.accent2}">
-      <div class="app-bg" aria-hidden="true"></div>
-      <div class="app-grid">
-        <div class="app-copy">
-          <div class="app-head reveal">
-            <img src="${a.icon}" alt="" width="64" height="64" loading="lazy">
-            <div><div class="num">${String(i + 1).padStart(2, "0")} / ${String(APPS.length).padStart(2, "0")}</div><h2>${esc(a.name)}</h2></div>
-          </div>
-          <p class="lead reveal">${esc(a.tagline)}</p>
-          <p class="summary reveal">${esc(a.summary)}</p>
-          <div class="meta reveal">${a.platforms.map((p) => `<span class="chip">${esc(p)}</span>`).join("")}<span class="chip">v${esc(a.version)}</span>${(a.requirements || []).map((r) => `<span class="chip">${esc(r)}</span>`).join("")}</div>
-          ${a.note ? `<p class="note reveal">${esc(a.note)}</p>` : ""}
-          ${a.download ? `<div class="dl-info reveal"><span>✓ ${esc(a.download.note)} DMG'yi açıp uygulamayı Applications klasörüne sürükleyin.</span><code title="SHA-256">SHA-256 ${esc(a.download.sha256.slice(0, 16))}…<button type="button" data-copy="${esc(a.download.sha256)}">Kopyala</button></code></div>` : ""}
-          <div class="actions reveal">
-            ${"download" in a.links ? linkBtn(a.links.download, `İndir${a.download ? " · " + esc(a.download.size) : " (DMG)"}`, true) : linkBtn(a.links.appStore, "App Store", true)}
-            ${a.links.support ? linkBtn(a.links.support, "Destek") : ""}
-            ${a.links.privacy ? linkBtn(a.links.privacy, "Gizlilik") : ""}
-          </div>
-        </div>
-        ${visualFor(a)}
-      </div>
-      <div class="features">
-        ${a.features.map((f, j) => `<div class="feature reveal" style="--d:${(j % 3) * 0.07}s"><b>${esc(f.t)}</b><p>${esc(f.d)}</p></div>`).join("")}
-      </div>
-    </section>`
-  ).join("");
-
-  $("#roadmap").innerHTML = ROADMAP.map(
-    (r, i) => `
-    <${r.href ? `a href="${r.href}"` : "div"} class="soon reveal tilt" style="--d:${i * 0.08}s">
-      <div class="q">${r.href ? "+" : "?"}</div>
-      <h3>${esc(r.name)}</h3>
-      <p>${esc(r.desc)}</p>
-      <div class="row"><span class="status">${esc(r.status)}</span><span class="chip">${esc(r.platform)}</span></div>
-    </${r.href ? "a" : "div"}>`
-  ).join("");
 
   /* ---------- background: particle network ---------- */
   const canvas = $("#bg");
@@ -230,7 +124,7 @@
       el.addEventListener("pointerleave", () => { el.style.transform = ""; });
     });
     $$(".tilt-soft").forEach((el) => {
-      const host = el.closest(".app");
+      const host = el.closest(".app") || el.parentElement;
       host.addEventListener("pointermove", (e) => {
         const r = host.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
         el.style.setProperty("--ry", -8 + x * 10 + "deg");
@@ -248,7 +142,7 @@
     });
   }
 
-  /* ---------- nav: hide on scroll down, highlight section ---------- */
+  /* ---------- nav: hide on scroll down ---------- */
   const nav = $("#nav");
   let lastY = scrollY;
   addEventListener("scroll", () => {
@@ -256,14 +150,6 @@
     nav.classList.toggle("hidden", y > lastY && y > 300);
     lastY = y;
   }, { passive: true });
-  const navMap = new Map($$("#navLinks a").map((a) => [a.getAttribute("href").slice(1), a]));
-  const sio = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      const a = navMap.get(e.target.id);
-      if (a) a.classList.toggle("active", e.isIntersecting);
-    });
-  }, { rootMargin: "-45% 0px -50% 0px" });
-  navMap.forEach((_, id) => { const s = document.getElementById(id); if (s) sio.observe(s); });
 
   /* ---------- carousels ---------- */
   $$(".carousel").forEach((c) => {
@@ -375,4 +261,25 @@
     });
   }, { threshold: 0.3 });
   $$("[data-term]").forEach((el) => tio.observe(el));
+
+  /* ---------- EYCleaner window: live meters ---------- */
+  $$("[data-cleaner]").forEach((win) => {
+    if (reduced) return;
+    const meters = $$(".cl-m", win), score = $("[data-score]", win);
+    const base = meters.map((m) => parseInt($("em", m).textContent, 10));
+    setInterval(() => {
+      if (document.hidden) return;
+      let load = 0;
+      meters.forEach((m, k) => {
+        const swing = k === 2 ? 1 : k === 1 ? 6 : 14; // disk barely moves, CPU/network jump around
+        const v = Math.max(3, Math.min(97, base[k] + Math.round((Math.random() - 0.5) * 2 * swing)));
+        $("i", m).style.setProperty("--v", v + "%");
+        $("em", m).textContent = v + "%";
+        load += v;
+      });
+      const s = Math.round(100 - load / meters.length / 4);
+      score.textContent = s;
+      win.style.setProperty("--score", s);
+    }, 1800);
+  });
 })();
