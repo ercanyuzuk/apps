@@ -379,9 +379,12 @@ function appPage(a, i) {
 
   const extra = a.appStoreId ? `\n  <meta name="apple-itunes-app" content="app-id=${a.appStoreId}">` : "";
 
-  const actions = [
+  const primary = [
     ...(a.download ? [btn(a.download.file, `Mac için indir · ${a.download.size}`, true)] : []),
-    ...(a.stores || []).map((s, k) => btn(s.href, s.label, k === 0 || !!s.href)),
+    ...(a.stores || []).map((s, k) => btn(s.href, s.label, k === 0 || !!s.href))
+  ];
+  const actions = [
+    ...primary,
     a.links.support && btn(a.links.support, "Destek"),
     a.links.privacy && btn(a.links.privacy, "Gizlilik")
   ].filter(Boolean);
@@ -439,7 +442,7 @@ function appPage(a, i) {
           <dl>
             ${specs.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("\n            ")}
           </dl>
-          <div class="specs-actions">${actions[0]}</div>
+          <div class="specs-actions">${(a.download ? primary.slice(0, 1) : primary.filter((_, k) => k === 0 || a.stores[k].href)).join("")}</div>
         </aside>
       </div>
     </section>
