@@ -392,7 +392,7 @@ a { color: inherit; text-decoration: none; }
 .principle p { margin: 0; color: var(--muted); font-size: 15px; }
 
 /* ---------- roadmap ---------- */
-.roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.roadmap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .soon {
   position: relative; padding: 28px; border-radius: var(--radius); min-height: 220px; display: flex; flex-direction: column;
   background: var(--card); overflow: hidden; isolation: isolate;
