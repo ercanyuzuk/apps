@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://apps.ercanyuzuk.com/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://apps.ercanyuzuk.com/eycleaner/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://apps.ercanyuzuk.com/assets/icons/eycleaner.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://apps.ercanyuzuk.com/eyconsol/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://apps.ercanyuzuk.com/assets/icons/eyconsol.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://apps.ercanyuzuk.com/eyiptv/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://apps.ercanyuzuk.com/assets/icons/eyiptv.png</image:loc></image:image>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://apps.ercanyuzuk.com/eynetscanner/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://apps.ercanyuzuk.com/assets/icons/eynetscanner.png</image:loc></image:image>

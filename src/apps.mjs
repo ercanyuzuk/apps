@@ -193,12 +193,13 @@ export const APPS = [
     accent2: "#4d6bff",
     version: "1.0",
     category: "EntertainmentApplication",
-    os: "tvOS 26.2",
+    os: "tvOS 26.2, iOS 26.2",
+    appStoreId: "6820475557",
     visual: "tv",
     seo: {
-      title: "eyiptv — Apple TV için sade IPTV oynatıcı",
+      title: "eyiptv — Apple TV ve iPhone için sade IPTV oynatıcı",
       description:
-        "eyiptv: Apple TV için hızlı ve sade IPTV oynatıcı. Canlı TV, film ve dizileriniz tek yerde; kumandaya uygun arayüz, cihazda kalan giriş bilgileri. iPhone yakında."
+        "eyiptv: Apple TV ve iPhone için hızlı ve sade IPTV oynatıcı. Canlı TV, film ve dizileriniz tek yerde; kumandaya uygun arayüz, cihazda kalan giriş bilgileri."
     },
     shots: {
       tv: [
@@ -222,14 +223,14 @@ export const APPS = [
       { t: "Sezon & bölüm", d: "Dizilerde sezon ve bölüm seçimi, kaldığınız yerden devam." },
       { t: "Kumandaya uygun", d: "Apple TV kumandasıyla rahat gezinme; iPhone'da dikey ve yatay izleme." },
       { t: "Bilgiler cihazda", d: "Giriş bilgileri yalnızca cihazınızda saklanır; geliştiriciye ya da üçüncü taraflara gönderilmez." },
-      { t: "Apple TV ve iPhone", d: "Apple TV sürümü App Store'da; iPhone sürümü yayın onayı bekliyor." }
+      { t: "Apple TV ve iPhone", d: "Tek uygulama, iki cihaz: Apple TV ve iPhone sürümleri App Store'da ücretsiz." }
     ],
-    requirements: ["tvOS 26.2+"],
+    requirements: ["tvOS 26.2+", "iOS 26.2+"],
     price: "Ücretsiz",
     note: "eyiptv herhangi bir yayın, kanal veya içerik sağlamaz; yasal olarak abone olduğunuz servisin bilgileriyle çalışır.",
     stores: [
       { label: "Apple TV · App Store", href: "https://apps.apple.com/us/app/eyiptv/id6820475557" },
-      { label: "iPhone", href: "" }
+      { label: "iPhone · App Store", href: "https://apps.apple.com/tr/app/eyiptv/id6820475557?l=tr" }
     ],
     links: {
       support: "https://www.ercanyuzuk.com/p/eyiptv-destek.html",
@@ -257,7 +258,7 @@ export const APPS = [
       {
         h: "iPhone sürümü",
         p: [
-          "eyiptv'nin iPhone sürümü hazır ve App Store yayın onayını bekliyor. Yayınlandığında bağlantısı bu sayfaya eklenecek. iPhone'da dikey ve yatay izleme, aynı Canlı TV, Film ve Dizi bölümleriyle gelecek."
+          "eyiptv artık iPhone'da da App Store'da. iPhone sürümü aynı Canlı TV, Film ve Dizi bölümlerini sunar; dikey ve yatay izlemeyi destekler. iOS 26.2 veya sonrasını gerektirir."
         ]
       }
     ],
@@ -265,7 +266,7 @@ export const APPS = [
       { q: "eyiptv kanal ya da içerik sağlıyor mu?", a: "Hayır. eyiptv yalnızca bir oynatıcıdır; herhangi bir yayın, kanal veya içerik sağlamaz. Yasal olarak abone olduğunuz servisin bilgileriyle çalışır." },
       { q: "eyiptv ücretli mi?", a: "eyiptv App Store'dan ücretsiz indirilebilir." },
       { q: "Hangi Apple TV modellerinde çalışır?", a: "tvOS 26.2 veya sonrasını çalıştıran Apple TV HD ve Apple TV 4K modellerinde çalışır." },
-      { q: "iPhone sürümü ne zaman çıkacak?", a: "iPhone sürümü App Store onayını bekliyor. Yayınlandığında App Store bağlantısı bu sayfaya eklenecek." },
+      { q: "iPhone'da kullanabilir miyim?", a: "Evet. eyiptv iOS 26.2 veya sonrasını çalıştıran iPhone'larda App Store'dan ücretsiz indirilebilir." },
       { q: "Giriş bilgilerim nereye gönderiliyor?", a: "Yalnızca cihazınızda saklanır ve sadece servis sağlayıcınıza bağlanmak için kullanılır. Geliştiriciye veya üçüncü taraflara gönderilmez." }
     ],
     marquee: ["Canlı TV", "Apple TV", "Dizi & Film"]
@@ -351,7 +352,6 @@ export const APPS = [
 ];
 
 export const ROADMAP = [
-  { name: "eyiptv · iPhone", desc: "iPhone sürümü hazır, App Store yayın onayını bekliyor.", status: "Onay bekleniyor", platform: "iPhone", href: "/eyiptv/" },
   { name: "EYConsol 0.2", desc: "Yeni özellikler ve iyileştirmeler.", status: "Planlanıyor", platform: "macOS" },
   { name: "Fikrin mi var?", desc: "İhtiyaç duyduğun bir araç varsa yaz, birlikte yapalım.", status: "Açık", platform: "Sen", href: "/#iletisim" }
 ];
