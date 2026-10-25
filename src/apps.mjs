@@ -26,7 +26,7 @@ export const APPS = [
     platforms: ["macOS"],
     accent: "#4f8bff",
     accent2: "#38c6e0",
-    version: "1.2",
+    version: "1.3",
     category: "UtilitiesApplication",
     os: "macOS 15",
     visual: "cleaner",
@@ -39,19 +39,19 @@ export const APPS = [
       { t: "Durum", d: "Sağlık skoru; canlı CPU, bellek, disk, ağ ve pil bilgisi, en çok kaynak kullanan süreçler." },
       { t: "Temizle", d: "Önbellek, günlük ve geçici dosyaları önce önizler; onayınızdan sonra temizler." },
       { t: "Optimize Et", d: "Sistem bakım adımlarını bölüm bölüm listeler, önce deneme modunda gösterir." },
-      { t: "Disk Analizi", d: "Klasörler arasında gezinerek yeri neyin kapladığını görün, gereksizi Çöp Sepeti'ne taşıyın." },
+      { t: "Disk Analizi", d: "Klasörler arasında gezinerek yeri neyin kapladığını görün, gereksizi Çöp Sepeti'ne taşıyın. Boyutlar her taramada güncel." },
       { t: "Büyük Dosyalar", d: "100 MB–5 GB eşik, dosya türü filtreleri ve çoklu seçimle büyük dosyaları bulun." },
-      { t: "Uygulama Kaldır", d: "Uygulamaları destek dosyaları ve artıklarıyla birlikte, önizleyerek kaldırın." },
-      { t: "Proje Artıkları", d: "node_modules, build ve benzeri yeniden üretilebilir klasörleri bulup temizler." },
+      { t: "Uygulama Kaldır", d: "Uygulamaları destek dosyaları ve artıklarıyla birlikte, önizleyerek kaldırın; ne kadar yer açıldığını görün." },
+      { t: "Proje Artıkları", d: "node_modules, build ve benzeri klasörleri bulur; silinecekleri önizlemede tek tek listeler." },
       { t: "Yükleyiciler", d: "İndirilenler'de unutulan .dmg, .pkg ve arşiv dosyalarını listeler." },
       { t: "Menü çubuğu", d: "✨ simgesinden sağlık skoru ve sistem özeti; pencere kapalıyken de çalışır." }
     ],
     requirements: ["macOS 15+", "Apple Silicon & Intel"],
     price: "Ücretsiz",
     download: {
-      file: "/downloads/EYCleaner-1.2.dmg",
+      file: "/downloads/EYCleaner-1.3.dmg",
       size: "18,4 MB",
-      sha256: "f41e35b26cd5101dac39969575e747dcbe1a692e4b95da323218ded7ad66526a",
+      sha256: "f521c0aa1e963bf0f6cafb21f689e2ce7a07b41ad7c1bda5649072dc23fbec4f",
       note: "Apple tarafından onaylanmış (notarized) Developer ID imzalı."
     },
     note:
@@ -72,13 +72,14 @@ export const APPS = [
         h: "Diskte yer neye gidiyor?",
         p: [
           "Disk Analizi, seçtiğiniz klasördeki alt klasörleri boyutlarına göre sıralar; tıklayarak içeri inebilir, yeri dolduran klasörü birkaç adımda bulabilirsiniz. Büyük Dosyalar ise tüm diski tarayıp eşik değerinden büyük dosyaları tür (video, arşiv, disk görüntüsü…) filtresiyle listeler.",
-          "Geliştiriciyseniz Proje Artıkları ekranı unutulmuş node_modules, build ve önbellek klasörlerini bulur; çoğu zaman en çok yer açan adım budur."
+          "Disk Analizi her açılışta, Yeniden Tara'ya bastığınızda ve Çöp Sepeti'ne taşıma sonrasında diski baştan tarar; Finder'da sildiğiniz dosyalar da hemen hesaba katılır.",
+          "Geliştiriciyseniz Proje Artıkları ekranı unutulmuş node_modules, build ve önbellek klasörlerini bulur; silinecek her klasör onaydan önce yoluyla birlikte listelenir. Çoğu zaman en çok yer açan adım budur."
         ]
       },
       {
         h: "Uygulamaları artıklarıyla kaldırın",
         p: [
-          "Bir uygulamayı Çöp Sepeti'ne sürüklemek; Application Support, önbellek, tercih ve başlangıç öğelerini geride bırakır. Uygulama Kaldır ekranında birden fazla uygulamayı seçip kaldırılacak dosyaları önizleyebilir, hepsini tek seferde temizleyebilirsiniz."
+          "Bir uygulamayı Çöp Sepeti'ne sürüklemek; Application Support, önbellek, tercih ve başlangıç öğelerini geride bırakır. Uygulama Kaldır ekranında birden fazla uygulamayı seçip kaldırılacak dosyaları önizleyebilir, hepsini tek seferde temizleyebilirsiniz. İşlem bitince toplamda ne kadar yer açıldığı gösterilir."
         ]
       },
       {
@@ -186,12 +187,12 @@ export const APPS = [
     name: "eyiptv",
     tagline: "Kendi yayınlarınız, büyük ekranda.",
     summary:
-      "Apple TV ve iPhone için sade, hızlı bir medya oynatıcı. Servis sağlayıcınızın bilgileriyle giriş yapın; canlı TV, film ve dizilerinize tek yerden ulaşın.",
+      "Apple TV ve iPhone için sade, hızlı bir medya oynatıcı. Servis sağlayıcınızın bilgileriyle ya da M3U playlist adresiyle giriş yapın; canlı TV, film ve dizilerinize tek yerden ulaşın.",
     icon: "/assets/icons/eyiptv.png",
     platforms: ["Apple TV", "iPhone"],
     accent: "#8b7bff",
     accent2: "#4d6bff",
-    version: "1.0",
+    version: "1.1",
     category: "EntertainmentApplication",
     os: "tvOS 26.2, iOS 26.2",
     appStoreId: "6820475557",
@@ -199,7 +200,7 @@ export const APPS = [
     seo: {
       title: "eyiptv — Apple TV ve iPhone için sade IPTV oynatıcı",
       description:
-        "eyiptv: Apple TV ve iPhone için hızlı ve sade IPTV oynatıcı. Canlı TV, film ve dizileriniz tek yerde; kumandaya uygun arayüz, cihazda kalan giriş bilgileri."
+        "eyiptv: Apple TV ve iPhone için sade IPTV oynatıcı. M3U veya kullanıcı adı/şifre ile giriş, çoklu playlist; canlı TV, film ve diziler tek yerde. Ücretsiz."
     },
     shots: {
       tv: [
@@ -218,8 +219,8 @@ export const APPS = [
       ]
     },
     features: [
-      { t: "Canlı TV, Film, Dizi", d: "Her içerik türü için ayrı bölüm, kategorilere göre düzenli görünüm." },
-      { t: "Hızlı arama", d: "Tüm kanal, film ve dizilerde anında arama." },
+      { t: "Canlı TV, Film, Dizi", d: "Her içerik türü için ayrı bölüm, kategorilere göre düzenli görünüm ve tüm içerikte anında arama." },
+      { t: "M3U ve çoklu playlist", d: "Kullanıcı adı/şifre ya da M3U adresiyle giriş. Birden fazla playlist kaydedin, Ayarlar'dan geçiş yapın." },
       { t: "Sezon & bölüm", d: "Dizilerde sezon ve bölüm seçimi, kaldığınız yerden devam." },
       { t: "Kumandaya uygun", d: "Apple TV kumandasıyla rahat gezinme; iPhone'da dikey ve yatay izleme." },
       { t: "Bilgiler cihazda", d: "Giriş bilgileri yalnızca cihazınızda saklanır; geliştiriciye ya da üçüncü taraflara gönderilmez." },
@@ -250,9 +251,16 @@ export const APPS = [
         ]
       },
       {
+        h: "M3U ve birden fazla playlist",
+        p: [
+          "Giriş için iki yol var: servis sağlayıcınızın verdiği sunucu adresi, kullanıcı adı ve şifre ya da doğrudan bir M3U playlist adresi. Her playliste bir ad verirsiniz.",
+          "İstediğiniz kadar playlist ekleyebilir, Ayarlar'dan aralarında geçiş yapabilirsiniz. Kullanmadığınız bir playlisti \"Bu Playlisti Sil\" ile kaldırabilir, \"Çıkış Yap\" ile hiçbir şeyi silmeden seçim ekranına dönebilirsiniz. Playlistler her cihazda ayrı saklanır; iPhone ve Apple TV'de ayrı ayrı eklenir."
+        ]
+      },
+      {
         h: "Gizlilik",
         p: [
-          "Hesap açmanız gerekmez. Giriş bilgileriniz yalnızca cihazınızda saklanır ve yalnızca servis sağlayıcınızla bağlantı kurmak için kullanılır; geliştiriciye ya da üçüncü taraflara gönderilmez. Uygulamada reklam ve analitik yoktur."
+          "Hesap açmanız gerekmez. Playlistleriniz ve giriş bilgileriniz yalnızca cihazınızda saklanır ve yalnızca servis sağlayıcınızla bağlantı kurmak için kullanılır; geliştiriciye ya da üçüncü taraflara gönderilmez. Uygulamada reklam ve analitik yoktur."
         ]
       },
       {
@@ -265,6 +273,8 @@ export const APPS = [
     faq: [
       { q: "eyiptv kanal ya da içerik sağlıyor mu?", a: "Hayır. eyiptv yalnızca bir oynatıcıdır; herhangi bir yayın, kanal veya içerik sağlamaz. Yasal olarak abone olduğunuz servisin bilgileriyle çalışır." },
       { q: "eyiptv ücretli mi?", a: "eyiptv App Store'dan ücretsiz indirilebilir." },
+      { q: "M3U playlist kullanabilir miyim?", a: "Evet. 1.1 sürümünden itibaren kullanıcı adı ve şifrenin yanı sıra doğrudan M3U playlist adresiyle de giriş yapabilirsiniz." },
+      { q: "Birden fazla playlist ekleyebilir miyim?", a: "Evet. Ayarlar'daki \"Yeni Playlist Ekle\" ile istediğiniz kadar playlist ekleyip aralarında geçiş yapabilirsiniz. Playlistler her cihazda ayrı saklanır; iPhone ve Apple TV'de ayrı ayrı eklemeniz gerekir." },
       { q: "Hangi Apple TV modellerinde çalışır?", a: "tvOS 26.2 veya sonrasını çalıştıran Apple TV HD ve Apple TV 4K modellerinde çalışır." },
       { q: "iPhone'da kullanabilir miyim?", a: "Evet. eyiptv iOS 26.2 veya sonrasını çalıştıran iPhone'larda App Store'dan ücretsiz indirilebilir." },
       { q: "Giriş bilgilerim nereye gönderiliyor?", a: "Yalnızca cihazınızda saklanır ve sadece servis sağlayıcınıza bağlanmak için kullanılır. Geliştiriciye veya üçüncü taraflara gönderilmez." }
