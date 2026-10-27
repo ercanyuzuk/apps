@@ -18,7 +18,10 @@ BreadcrumbList, FAQPage; ana sayfada WebSite + ItemList) bulunur. `js/main.js` y
 2. `src/apps.mjs` içindeki `APPS` dizisine bir nesne ekleyin (`visual`: `terminal`, `cleaner`, `phones` veya `tv`);
    `seo`, `about` ve `faq` alanlarını doldurun.
 3. App Store bağlantıları `stores` dizisindedir; `href` boşsa düğme "Yakında" olarak görünür.
-4. macOS DMG için dosyayı `downloads/` altına koyun, `download` alanına adı, boyutu ve `shasum -a 256` çıktısını yazın.
+4. macOS DMG'leri GitHub Releases'tan dağıtılır (`ercanyuzuk/eycleaner-releases`, `ercanyuzuk/eyconsol-releases`).
+   `download.repo` alanına depoyu yazın; build son sürümün numarasını, DMG adresini, boyutunu ve SHA-256'sını
+   (asset digest'i ya da sürüm notundaki `shasum` satırı) oradan alır ve `src/releases.json`'a yazar.
+   Yeni sürüm yayınlandıktan sonra yalnızca build alıp commit'lemek yeterlidir.
 5. `node scripts/build.mjs` çalıştırın.
 
 ## Yerelde çalıştırma

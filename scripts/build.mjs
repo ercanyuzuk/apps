@@ -2,9 +2,11 @@
 /*
  * Statik site üreticisi. src/apps.mjs'teki verilerden şunları yazar:
  *   index.html, <id>/index.html (her uygulama için), sitemap.xml, robots.txt
+ * download.repo tanımlı uygulamaların son sürümü GitHub Releases'tan alınır ve src/releases.json'a
+ * yazılır; GitHub'a ulaşılamazsa o dosyadaki son bilinen sürüm kullanılır.
  * Bağımlılık yok: `node scripts/build.mjs`
  */
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { APPS, ROADMAP } from "../src/apps.mjs";
@@ -20,6 +22,50 @@ const pad = (n) => String(n).padStart(2, "0");
 const ldJson = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, "\\u003c")}</script>`;
 
 const arrow = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* ---------- GitHub Releases ---------- */
+const RELEASES_FILE = join(ROOT, "src/releases.json");
+const releases = existsSync(RELEASES_FILE) ? JSON.parse(readFileSync(RELEASES_FILE, "utf8")) : {};
+
+async function latestRelease(repo) {
+  const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, {
+    headers: { Accept: "application/vnd.github+json", ...(process.env.GITHUB_TOKEN && { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }) }
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const r = await res.json();
+  const dmg = r.assets.find((x) => x.name.endsWith(".dmg"));
+  if (!dmg) throw new Error(`${r.tag_name} sürümünde DMG yok`);
+  const sha256 = dmg.digest?.startsWith("sha256:") ? dmg.digest.slice(7) : r.body.match(new RegExp(`([0-9a-f]{64})\\s+${dmg.name.replace(/\./g, "\\.")}`))?.[1];
+  if (!sha256) throw new Error(`${dmg.name} için SHA-256 bulunamadı`);
+  return {
+    version: r.tag_name.replace(/^v/, ""),
+    file: dmg.browser_download_url,
+    bytes: dmg.size,
+    sha256,
+    notes: r.html_url,
+    published: r.published_at.slice(0, 10)
+  };
+}
+
+for (const a of APPS.filter((x) => x.download?.repo)) {
+  const repo = a.download.repo;
+  try {
+    releases[repo] = await latestRelease(repo);
+  } catch (e) {
+    if (!releases[repo]) throw new Error(`${repo}: son sürüm alınamadı (${e.message}) ve önbellekte kayıt yok`);
+    console.warn(`! ${repo}: son sürüm alınamadı (${e.message}), önbellekteki ${releases[repo].version} kullanılıyor`);
+  }
+  const r = releases[repo];
+  a.version = r.version;
+  Object.assign(a.download, {
+    file: r.file,
+    size: `${(r.bytes / 1048576).toFixed(1).replace(".", ",")} MB`,
+    sha256: r.sha256,
+    notes: r.notes,
+    all: `https://github.com/${repo}/releases`
+  });
+}
+writeFileSync(RELEASES_FILE, JSON.stringify(releases, null, 2) + "\n");
 
 /* ---------- shared chrome ---------- */
 function head({ title, description, path, image = "/assets/og.jpg", card = "summary_large_image", extra = "", ld = [] }) {
@@ -101,9 +147,9 @@ const chips = (list) => list.map((p) => `<span class="chip">${esc(p)}</span>`).j
 const btn = (href, label, primary, extra = "") => {
   const cls = `btn ${primary ? "btn-primary" : "btn-ghost"}`;
   if (!href) return `<span class="${cls} disabled"><span>${esc(label)} · Yakında</span></span>`;
-  const ext = href.startsWith("http") ? ' target="_blank" rel="noopener"' : "";
-  const dl = href.endsWith(".dmg") ? " download" : "";
-  return `<a class="${cls} magnetic" href="${esc(href)}"${ext}${dl}${extra}><span>${esc(label)}</span></a>`;
+  // .dmg bağlantıları dosyayı doğrudan indirir; yeni sekme açmaya gerek yok
+  const ext = href.startsWith("http") && !href.endsWith(".dmg") ? ' target="_blank" rel="noopener"' : "";
+  return `<a class="${cls} magnetic" href="${esc(href)}"${ext}${extra}><span>${esc(label)}</span></a>`;
 };
 
 /** Short availability line for cards. */
@@ -385,6 +431,7 @@ function appPage(a, i) {
   ];
   const actions = [
     ...primary,
+    a.download && btn(a.download.notes, "Sürüm notları"),
     a.links.support && btn(a.links.support, "Destek"),
     a.links.privacy && btn(a.links.privacy, "Gizlilik")
   ].filter(Boolean);
@@ -408,7 +455,7 @@ function appPage(a, i) {
           <p class="lead reveal">${esc(a.tagline)}</p>
           <p class="summary reveal">${esc(a.summary)}</p>
           <div class="meta reveal">${chips(a.platforms)}<span class="chip">v${esc(a.version)}</span>${chips(a.requirements || [])}<span class="chip">${esc(a.price)}</span></div>
-          ${a.download ? `<div class="dl-info reveal"><span>✓ ${esc(a.download.note)} DMG'yi açıp uygulamayı Applications klasörüne sürükleyin.</span><code title="SHA-256">SHA-256 ${esc(a.download.sha256.slice(0, 16))}…<button type="button" data-copy="${esc(a.download.sha256)}">Kopyala</button></code></div>` : ""}
+          ${a.download ? `<div class="dl-info reveal"><span>✓ ${esc(a.download.note)} DMG'yi açıp uygulamayı Applications klasörüne sürükleyin; sonraki sürümleri uygulama kendisi bulup kurar. <a href="${esc(a.download.all)}" target="_blank" rel="noopener">Tüm sürümler</a></span><code title="SHA-256">SHA-256 ${esc(a.download.sha256.slice(0, 16))}…<button type="button" data-copy="${esc(a.download.sha256)}">Kopyala</button></code></div>` : ""}
           <div class="actions reveal">
             ${actions.join("\n            ")}
           </div>

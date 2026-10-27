@@ -29,9 +29,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EYConsol","description":"Ağ ve sistem yöneticileri için macOS terminal uygulaması. SSH oturumları, switch/router konsolları için seri port, SFTP dosya tarayıcısı ve bölünmüş paneller bir arada.","url":"https://apps.ercanyuzuk.com/eyconsol/","image":"https://apps.ercanyuzuk.com/assets/icons/eyconsol.png","applicationCategory":"DeveloperApplication","operatingSystem":"macOS 14","softwareVersion":"0.1.0","inLanguage":"tr","author":{"@type":"Person","name":"Ercan Yüzük","url":"https://www.ercanyuzuk.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://apps.ercanyuzuk.com/downloads/EYConsol-0.1.0.dmg","fileSize":"4.4 MB","featureList":["SSH","Seri port","SFTP tarayıcı","Bölünmüş paneller","Snippet'ler","Oturum kaydı"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EYConsol","description":"Ağ ve sistem yöneticileri için macOS terminal uygulaması. SSH oturumları, switch/router konsolları için seri port, SFTP dosya tarayıcısı ve bölünmüş paneller bir arada.","url":"https://apps.ercanyuzuk.com/eyconsol/","image":"https://apps.ercanyuzuk.com/assets/icons/eyconsol.png","applicationCategory":"DeveloperApplication","operatingSystem":"macOS 14","softwareVersion":"0.2.0","inLanguage":"tr","author":{"@type":"Person","name":"Ercan Yüzük","url":"https://www.ercanyuzuk.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://github.com/ercanyuzuk/eyconsol-releases/releases/download/v0.2.0/EYConsol-0.2.0.dmg","fileSize":"5.4 MB","featureList":["SSH","Seri port","SFTP tarayıcı","Bölünmüş paneller","Snippet'ler","Oturum kaydı"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EY Apps","item":"https://apps.ercanyuzuk.com/"},{"@type":"ListItem","position":2,"name":"EYConsol","item":"https://apps.ercanyuzuk.com/eyconsol/"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"EYConsol ücretli mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. EYConsol ücretsizdir; reklam, hesap ya da abonelik yoktur."}},{"@type":"Question","name":"Mevcut ~/.ssh/config dosyamı kullanabilir miyim?","acceptedAnswer":{"@type":"Answer","text":"Evet. Sunucu tanımlarınız, anahtarlarınız, ssh-agent ve ProxyJump ayarlarınız doğrudan kullanılır."}},{"@type":"Question","name":"Şifrelerim nerede saklanıyor?","acceptedAnswer":{"@type":"Answer","text":"Yalnızca isterseniz, macOS Keychain'de saklanır. Hiçbir sunucuya gönderilmez."}},{"@type":"Question","name":"Hangi seri port adaptörleriyle çalışır?","acceptedAnswer":{"@type":"Answer","text":"macOS'ta /dev/cu.* olarak görünen USB-seri adaptörlerle çalışır. Adaptörünüz için üreticinin sürücüsü gerekiyorsa önce onu kurun."}},{"@type":"Question","name":"Açarken güvenlik uyarısı çıkar mı?","acceptedAnswer":{"@type":"Answer","text":"Hayır. EYConsol Developer ID ile imzalı ve Apple tarafından onaylanmıştır (notarized)."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"EYConsol ücretli mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. EYConsol ücretsizdir; reklam, hesap ya da abonelik yoktur."}},{"@type":"Question","name":"Mevcut ~/.ssh/config dosyamı kullanabilir miyim?","acceptedAnswer":{"@type":"Answer","text":"Evet. Sunucu tanımlarınız, anahtarlarınız, ssh-agent ve ProxyJump ayarlarınız doğrudan kullanılır."}},{"@type":"Question","name":"Şifrelerim nerede saklanıyor?","acceptedAnswer":{"@type":"Answer","text":"Yalnızca isterseniz, macOS Keychain'de saklanır. Hiçbir sunucuya gönderilmez."}},{"@type":"Question","name":"Hangi seri port adaptörleriyle çalışır?","acceptedAnswer":{"@type":"Answer","text":"macOS'ta /dev/cu.* olarak görünen USB-seri adaptörlerle çalışır. Adaptörünüz için üreticinin sürücüsü gerekiyorsa önce onu kurun."}},{"@type":"Question","name":"EYConsol nasıl güncellenir?","acceptedAnswer":{"@type":"Answer","text":"0.2.0 ve sonraki sürümler açılışta yeni sürümü denetler, sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYConsol menüsünden Güncellemeleri Denetle…'yi seçin; otomatik denetimi Ayarlar > Güncellemeler'den kapatabilirsiniz. 0.1.0 kullanıyorsanız güncel sürümü bu sayfadan bir kez elle kurun."}},{"@type":"Question","name":"Açarken güvenlik uyarısı çıkar mı?","acceptedAnswer":{"@type":"Answer","text":"Hayır. EYConsol Developer ID ile imzalı ve Apple tarafından onaylanmıştır (notarized)."}}]}</script>
 </head>
 <body>
   <canvas id="bg" aria-hidden="true"></canvas>
@@ -63,10 +63,11 @@
           </div>
           <p class="lead reveal">SSH, seri port ve terminal — tek pencerede.</p>
           <p class="summary reveal">Ağ ve sistem yöneticileri için macOS terminal uygulaması. SSH oturumları, switch/router konsolları için seri port, SFTP dosya tarayıcısı ve bölünmüş paneller bir arada.</p>
-          <div class="meta reveal"><span class="chip">macOS</span><span class="chip">v0.1.0</span><span class="chip">macOS 14+</span><span class="chip">Apple Silicon &amp; Intel</span><span class="chip">Ücretsiz</span></div>
-          <div class="dl-info reveal"><span>✓ Apple tarafından onaylanmış (notarized) Developer ID imzalı. DMG'yi açıp uygulamayı Applications klasörüne sürükleyin.</span><code title="SHA-256">SHA-256 a8aa99eca8c79fc8…<button type="button" data-copy="a8aa99eca8c79fc83d519edcfd0d7267f532c3fc21dd56f861d7a770cd44b4ee">Kopyala</button></code></div>
+          <div class="meta reveal"><span class="chip">macOS</span><span class="chip">v0.2.0</span><span class="chip">macOS 14+</span><span class="chip">Apple Silicon &amp; Intel</span><span class="chip">Ücretsiz</span></div>
+          <div class="dl-info reveal"><span>✓ Apple tarafından onaylanmış (notarized) Developer ID imzalı. DMG'yi açıp uygulamayı Applications klasörüne sürükleyin; sonraki sürümleri uygulama kendisi bulup kurar. <a href="https://github.com/ercanyuzuk/eyconsol-releases/releases" target="_blank" rel="noopener">Tüm sürümler</a></span><code title="SHA-256">SHA-256 ca27571854df0731…<button type="button" data-copy="ca27571854df07316bc2c939a98a27c74492d11ee0736cecd09ee87c3694365b">Kopyala</button></code></div>
           <div class="actions reveal">
-            <a class="btn btn-primary magnetic" href="/downloads/EYConsol-0.1.0.dmg" download><span>Mac için indir · 4,4 MB</span></a>
+            <a class="btn btn-primary magnetic" href="https://github.com/ercanyuzuk/eyconsol-releases/releases/download/v0.2.0/EYConsol-0.2.0.dmg"><span>Mac için indir · 5,4 MB</span></a>
+            <a class="btn btn-ghost magnetic" href="https://github.com/ercanyuzuk/eyconsol-releases/releases/tag/v0.2.0" target="_blank" rel="noopener"><span>Sürüm notları</span></a>
             <a class="btn btn-ghost magnetic" href="mailto:ercanyuzuk@gmail.com?subject=EYConsol"><span>Destek</span></a>
           </div>
           
@@ -116,15 +117,15 @@
         <aside class="specs reveal" aria-label="Teknik bilgiler">
           <img src="/assets/icons/eyconsol.png" alt="" width="72" height="72" loading="lazy">
           <dl>
-            <div><dt>Sürüm</dt><dd>0.1.0</dd></div>
+            <div><dt>Sürüm</dt><dd>0.2.0</dd></div>
             <div><dt>Platform</dt><dd>macOS</dd></div>
             <div><dt>Gereksinim</dt><dd>macOS 14+ · Apple Silicon &amp; Intel</dd></div>
             <div><dt>Fiyat</dt><dd>Ücretsiz</dd></div>
-            <div><dt>Boyut</dt><dd>4,4 MB</dd></div>
+            <div><dt>Boyut</dt><dd>5,4 MB</dd></div>
             <div><dt>Dil</dt><dd>Türkçe</dd></div>
             <div><dt>Geliştirici</dt><dd>Ercan Yüzük</dd></div>
           </dl>
-          <div class="specs-actions"><a class="btn btn-primary magnetic" href="/downloads/EYConsol-0.1.0.dmg" download><span>Mac için indir · 4,4 MB</span></a></div>
+          <div class="specs-actions"><a class="btn btn-primary magnetic" href="https://github.com/ercanyuzuk/eyconsol-releases/releases/download/v0.2.0/EYConsol-0.2.0.dmg"><span>Mac için indir · 5,4 MB</span></a></div>
         </aside>
       </div>
     </section>
@@ -139,6 +140,7 @@
         <details class="reveal"><summary><h3>Mevcut ~/.ssh/config dosyamı kullanabilir miyim?</h3></summary><p>Evet. Sunucu tanımlarınız, anahtarlarınız, ssh-agent ve ProxyJump ayarlarınız doğrudan kullanılır.</p></details>
         <details class="reveal"><summary><h3>Şifrelerim nerede saklanıyor?</h3></summary><p>Yalnızca isterseniz, macOS Keychain&#39;de saklanır. Hiçbir sunucuya gönderilmez.</p></details>
         <details class="reveal"><summary><h3>Hangi seri port adaptörleriyle çalışır?</h3></summary><p>macOS&#39;ta /dev/cu.* olarak görünen USB-seri adaptörlerle çalışır. Adaptörünüz için üreticinin sürücüsü gerekiyorsa önce onu kurun.</p></details>
+        <details class="reveal"><summary><h3>EYConsol nasıl güncellenir?</h3></summary><p>0.2.0 ve sonraki sürümler açılışta yeni sürümü denetler, sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYConsol menüsünden Güncellemeleri Denetle…&#39;yi seçin; otomatik denetimi Ayarlar &gt; Güncellemeler&#39;den kapatabilirsiniz. 0.1.0 kullanıyorsanız güncel sürümü bu sayfadan bir kez elle kurun.</p></details>
         <details class="reveal"><summary><h3>Açarken güvenlik uyarısı çıkar mı?</h3></summary><p>Hayır. EYConsol Developer ID ile imzalı ve Apple tarafından onaylanmıştır (notarized).</p></details>
       </div>
     </section>

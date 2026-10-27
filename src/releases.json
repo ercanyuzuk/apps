@@ -1,0 +1,18 @@
+{
+  "ercanyuzuk/eycleaner-releases": {
+    "version": "1.4",
+    "file": "https://github.com/ercanyuzuk/eycleaner-releases/releases/download/v1.4/EYCleaner-1.4.dmg",
+    "bytes": 20248649,
+    "sha256": "17437fdb237c461a80b14ddeb4a8aca21a08664ff86c9d85bd39fceb0a90348c",
+    "notes": "https://github.com/ercanyuzuk/eycleaner-releases/releases/tag/v1.4",
+    "published": "2026-10-27"
+  },
+  "ercanyuzuk/eyconsol-releases": {
+    "version": "0.2.0",
+    "file": "https://github.com/ercanyuzuk/eyconsol-releases/releases/download/v0.2.0/EYConsol-0.2.0.dmg",
+    "bytes": 5610828,
+    "sha256": "ca27571854df07316bc2c939a98a27c74492d11ee0736cecd09ee87c3694365b",
+    "notes": "https://github.com/ercanyuzuk/eyconsol-releases/releases/tag/v0.2.0",
+    "published": "2026-10-27"
+  }
+}

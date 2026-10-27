@@ -7,8 +7,9 @@
  *   visual:   "terminal" (EYConsol penceresi), "cleaner" (EYCleaner penceresi),
  *             "phones" (iPhone ekran görüntüleri), "tv" (Apple TV + iPhone ekran görüntüleri)
  *   stores:   App Store bağlantıları. href boşsa ("") düğme "Yakında" olarak gösterilir.
- *   download: DMG'yi downloads/ klasörüne koyup dosya adı, boyut ve SHA-256 yazın
- *             (shasum -a 256 dosya.dmg).
+ *   download: macOS DMG'leri GitHub Releases'tan dağıtılır. `repo` alanına releases deposunu yazın;
+ *             build sırasında son sürümün numarası, DMG adresi, boyutu ve SHA-256'sı oradan alınır
+ *             (src/releases.json'a önbelleklenir). Buradaki `version` alanı bu durumda kullanılmaz.
  *   seo:      <title> ve meta description. Açıklama ~150-160 karakter olmalı.
  *   about:    detay sayfasındaki uzun açıklama bölümleri.
  *   faq:      sık sorulan sorular (sayfada ve FAQPage yapısal verisinde kullanılır).
@@ -26,7 +27,7 @@ export const APPS = [
     platforms: ["macOS"],
     accent: "#4f8bff",
     accent2: "#38c6e0",
-    version: "1.3",
+    version: "1.4",
     category: "UtilitiesApplication",
     os: "macOS 15",
     visual: "cleaner",
@@ -49,9 +50,7 @@ export const APPS = [
     requirements: ["macOS 15+", "Apple Silicon & Intel"],
     price: "Ücretsiz",
     download: {
-      file: "/downloads/EYCleaner-1.3.dmg",
-      size: "18,4 MB",
-      sha256: "f521c0aa1e963bf0f6cafb21f689e2ce7a07b41ad7c1bda5649072dc23fbec4f",
+      repo: "ercanyuzuk/eycleaner-releases",
       note: "Apple tarafından onaylanmış (notarized) Developer ID imzalı."
     },
     note:
@@ -103,6 +102,7 @@ export const APPS = [
       { q: "Mole'u ayrıca kurmam gerekiyor mu?", a: "Hayır. Test edilmiş bir Mole sürümü uygulamanın içinde gelir. Sisteminizde Homebrew ile kurulu bir Mole varsa kullanılmaz; böylece güncellemeler EYCleaner'ı bozmaz." },
       { q: "Neden Tam Disk Erişimi istiyor?", a: "İstemez, isteğe bağlıdır. macOS, Masaüstü, Belgeler, İndirilenler ve Mail gibi klasörleri korur. Bu klasörlerin de taranmasını istiyorsanız EYCleaner'a Tam Disk Erişimi verebilirsiniz." },
       { q: "EYCleaner neden App Store'da değil?", a: "Önbellekleri temizlemek ve uygulama artıklarını kaldırmak için App Store'un zorunlu tuttuğu sandbox dışında çalışması gerekir. Bu yüzden Apple onaylı (notarized) DMG olarak buradan dağıtılır." },
+      { q: "EYCleaner nasıl güncellenir?", a: "1.4 ve sonraki sürümler yeni sürümü kendisi denetler: açılışta ve çalışırken saatte bir. Yeni sürüm varsa bildirim gösterir; Yükle dediğinizde indirir, doğrular, kurar ve yeniden başlatır. Elle denetlemek için EYCleaner menüsünden ya da menü çubuğundan Güncellemeleri Denetle'yi seçin. 1.3 veya öncesini kullanıyorsanız güncel sürümü bu sayfadan bir kez elle kurun." },
       { q: "Hangi Mac'lerde çalışır?", a: "macOS 15 Sequoia ve sonrasını çalıştıran tüm Apple Silicon ve Intel Mac'lerde çalışır (universal uygulama)." }
     ],
     marquee: ["Temizlik", "Disk Analizi", "Uygulama Kaldır"]
@@ -117,7 +117,7 @@ export const APPS = [
     platforms: ["macOS"],
     accent: "#5ab4ff",
     accent2: "#ff9f43",
-    version: "0.1.0",
+    version: "0.2.0",
     category: "DeveloperApplication",
     os: "macOS 14",
     visual: "terminal",
@@ -137,9 +137,7 @@ export const APPS = [
     requirements: ["macOS 14+", "Apple Silicon & Intel"],
     price: "Ücretsiz",
     download: {
-      file: "/downloads/EYConsol-0.1.0.dmg",
-      size: "4,4 MB",
-      sha256: "a8aa99eca8c79fc83d519edcfd0d7267f532c3fc21dd56f861d7a770cd44b4ee",
+      repo: "ercanyuzuk/eyconsol-releases",
       note: "Apple tarafından onaylanmış (notarized) Developer ID imzalı."
     },
     links: {
@@ -178,6 +176,7 @@ export const APPS = [
       { q: "Mevcut ~/.ssh/config dosyamı kullanabilir miyim?", a: "Evet. Sunucu tanımlarınız, anahtarlarınız, ssh-agent ve ProxyJump ayarlarınız doğrudan kullanılır." },
       { q: "Şifrelerim nerede saklanıyor?", a: "Yalnızca isterseniz, macOS Keychain'de saklanır. Hiçbir sunucuya gönderilmez." },
       { q: "Hangi seri port adaptörleriyle çalışır?", a: "macOS'ta /dev/cu.* olarak görünen USB-seri adaptörlerle çalışır. Adaptörünüz için üreticinin sürücüsü gerekiyorsa önce onu kurun." },
+      { q: "EYConsol nasıl güncellenir?", a: "0.2.0 ve sonraki sürümler açılışta yeni sürümü denetler, sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYConsol menüsünden Güncellemeleri Denetle…'yi seçin; otomatik denetimi Ayarlar > Güncellemeler'den kapatabilirsiniz. 0.1.0 kullanıyorsanız güncel sürümü bu sayfadan bir kez elle kurun." },
       { q: "Açarken güvenlik uyarısı çıkar mı?", a: "Hayır. EYConsol Developer ID ile imzalı ve Apple tarafından onaylanmıştır (notarized)." }
     ],
     marquee: ["SSH", "Serial", "SFTP"]
