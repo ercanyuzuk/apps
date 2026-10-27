@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * Statik site üreticisi. src/apps.mjs'teki verilerden şunları yazar:
- *   index.html, <id>/index.html (her uygulama için), sitemap.xml, robots.txt
+ *   index.html, <id>/index.html (her uygulama için), 404.html, sitemap.xml, robots.txt
  * download.repo tanımlı uygulamaların son sürümü GitHub Releases'tan alınır ve src/releases.json'a
  * yazılır; GitHub'a ulaşılamazsa o dosyadaki son bilinen sürüm kullanılır.
  * Bağımlılık yok: `node scripts/build.mjs`
@@ -549,6 +549,21 @@ ${APPS.map(
 ${[...(a.shots?.tv || []), ...(a.shots?.phone || [])].map((s) => `    <image:image><image:loc>${abs(s)}</image:loc></image:image>\n`).join("")}  </url>`
 ).join("\n")}
 </urlset>
+`
+);
+
+/* Eski /downloads/<Ad>-<sürüm>.dmg adresleri artık yok (DMG'ler GitHub Releases'ta). GitHub Pages sunucu
+   tarafında yönlendirme yapamadığı için bu istekler 404.html'e düşer; sayfa güncel DMG'ye yönlendirir. */
+const legacy = Object.fromEntries(APPS.filter((a) => a.download?.repo).map((a) => [a.name.toLowerCase(), { dmg: a.download.file, page: `/${a.id}/` }]));
+write(
+  "404.html",
+  `<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sayfa bulunamadı — EY Apps</title><meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script>(function(){var m=location.pathname.match(/^\\/downloads\\/([a-z]+)-[^/]*\\.dmg$/i),t=m&&${JSON.stringify(legacy)}[m[1].toLowerCase()];if(t){document.documentElement.dataset.dl=t.page;location.replace(t.dmg);}else if(/^\\/downloads\\/?$/.test(location.pathname))location.replace("/");})();</script>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#07080d;color:#eef0f6;font-family:system-ui,sans-serif;text-align:center;padding:16px}h1{font-size:clamp(64px,16vw,160px);margin:0;background:linear-gradient(100deg,#5ab4ff,#8b7bff,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}a{color:#5ab4ff}.dl,[data-dl] .nf{display:none}[data-dl] .dl{display:block}</style></head>
+<body><div><h1>404</h1><div class="nf"><p>Aradığınız sayfa bulunamadı.</p><p><a href="/">Ana sayfaya dön →</a></p></div><div class="dl"><p>İndirmeler artık GitHub üzerinden yapılıyor; güncel sürüm indiriliyor.</p><p><a id="dl" href="/">Uygulama sayfasına git →</a></p></div></div>
+<script>if(document.documentElement.dataset.dl)document.getElementById("dl").href=document.documentElement.dataset.dl;</script></body></html>
 `
 );
 
