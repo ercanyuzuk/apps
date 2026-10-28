@@ -14,7 +14,9 @@
  *   about:    detay sayfasındaki uzun açıklama bölümleri.
  *   faq:      sık sorulan sorular (sayfada ve FAQPage yapısal verisinde kullanılır).
  *
- * ROADMAP: yakında gelecek uygulamalar / fikirler.
+ *   seo.keywords: isteğe bağlı; JSON-LD'de keywords olarak yazılır (aranan ifadeler, ör. "mac tftp server").
+ *
+ * ROADMAP: yakında gelecek uygulamalar / fikirler. done: true → durum yeşil (yayınlandı).
  */
 export const APPS = [
   {
@@ -196,10 +198,12 @@ export const APPS = [
     os: "macOS 14",
     visual: "flash",
     seo: {
-      title: "EYFlash — Mac için TFTP ve FTP sunucusu, firmware güncelleme",
+      title: "EYFlash — Mac için ücretsiz TFTP server ve FTP sunucusu",
       description:
-        "EYFlash Mac'i TFTP ve FTP sunucusu yapar: router, switch ve firewall'lara firmware yükleyin, yapılandırma yedeği alın, hazır cihaz komutlarını kopyalayın."
+        "Mac için ücretsiz TFTP ve FTP sunucusu. Cisco, Huawei, Juniper, MikroTik ve FortiGate cihazlara firmware yükleyin, config yedeği alın; komutlar hazır.",
+      keywords: ["mac tftp server", "macOS TFTP sunucusu", "mac ftp server", "tftp server macos", "firmware yükleme", "cisco ios upgrade tftp", "switch config yedeği", "copy tftp flash"]
     },
+    alternateName: "EYFlash TFTP Server",
     features: [
       { t: "TFTP sunucusu", d: "RFC 1350; blksize, tsize ve timeout seçenekleri. 32 MB üstü imajlar için blok numarası sarması." },
       { t: "FTP sunucusu", d: "Pasif ve aktif mod, REST ile kaldığı yerden devam, anonim ya da kullanıcı/şifre ile giriş." },
@@ -219,14 +223,14 @@ export const APPS = [
     },
     about: [
       {
-        h: "Mac'iniz, cihazın dosya sunucusu",
+        h: "Mac'te TFTP sunucusu, Terminal'siz",
         p: [
-          "Ağ cihazlarının çoğu yeni firmware'i ya da yapılandırmayı bir TFTP veya FTP sunucusundan çeker. EYFlash Mac'inizi bu sunucuya çevirir: sunucu klasörüne imaj dosyasını sürükleyin, TFTP ya da FTP'yi açın ve cihazdan komutu çalıştırın.",
+          "Ağ cihazlarının çoğu yeni firmware'i ya da yapılandırmayı bir TFTP veya FTP sunucusundan çeker. macOS'un yerleşik tftpd'sini çalıştırmak Terminal'de launchctl komutları ve klasör izinleriyle uğraşmayı gerektirir; EYFlash ise Mac'inizi tek tıkla bu sunucuya çevirir: sunucu klasörüne imaj dosyasını sürükleyin, TFTP ya da FTP'yi açın ve cihazdan komutu çalıştırın.",
           "Kenar çubuğu Mac'inizin IP adreslerini (USB Ethernet adaptörleri dahil) listeler; cihazla aynı ağdaki adresi seçip tek tıkla kopyalayabilirsiniz. Sunucu çalışırken Mac uykuya geçmez, uzun süren bir yükleme yarıda kalmaz."
         ]
       },
       {
-        h: "Doğru komut, cihaza göre",
+        h: "Cisco, Huawei, Juniper ve MikroTik için hazır komutlar",
         p: [
           "Bir dosya seçin, cihaz markasını ve işlemi (cihaza dosya al ya da cihazdan yedek gönder) belirleyin; EYFlash Mac'in IP adresi, dosya adı ve protokolle doldurulmuş komutu hazırlar. Cisco IOS/IOS-XE ve NX-OS, Huawei VRP, H3C/HPE Comware, Juniper Junos, Aruba AOS-CX ve ProCurve, MikroTik RouterOS, Fortinet FortiGate ve Ubiquiti EdgeRouter desteklenir.",
           "Komutları uygulamadan önce cihazınızın yazılım sürümüne göre kontrol edin; bazı modeller farklı dosya sistemi adları ya da VRF ayarı gerektirebilir."
@@ -248,6 +252,8 @@ export const APPS = [
     ],
     faq: [
       { q: "EYFlash ücretli mi?", a: "Hayır. EYFlash ücretsizdir; reklam, hesap ya da abonelik yoktur." },
+      { q: "Mac'te TFTP sunucusu nasıl çalıştırılır?", a: "EYFlash'ı açın, sunucu klasörü olarak bir klasör seçin (varsayılan ~/EYFlash) ve kenar çubuğundan TFTP'yi açın. Firmware dosyasını klasöre sürükleyin; cihaz, kenar çubuğunda görünen Mac IP adresinden dosyayı çekebilir. Terminal komutu ya da yönetici şifresi gerekmez." },
+      { q: "Cisco switch'e Mac'ten IOS imajı nasıl yüklenir?", a: "İmaj dosyasını EYFlash'ın sunucu klasörüne koyun, TFTP'yi açın ve dosyayı seçip cihaz olarak Cisco IOS / IOS-XE'yi işaretleyin. EYFlash, Mac'in IP adresiyle doldurulmuş copy tftp://<Mac IP>/<imaj> flash: ve verify /md5 komutlarını hazırlar; bunları switch'in konsolunda çalıştırmanız yeterlidir." },
       { q: "69 ve 21 numaralı portlar için yönetici izni gerekir mi?", a: "Hayır. macOS'ta 69 (TFTP) ve 21 (FTP) portlarını açmak için root ya da sudo gerekmez." },
       { q: "Cihaz Mac'e bağlanamıyor, ne yapmalıyım?", a: "Önce cihazla Mac'in aynı ağda olduğunu ve komutta doğru IP adresinin kullanıldığını kontrol edin. macOS Güvenlik Duvarı açıksa Sistem Ayarları → Ağ → Güvenlik Duvarı'nda EYFlash'a gelen bağlantı izni verin." },
       { q: "Hangi cihazlar destekleniyor?", a: "TFTP ya da FTP istemcisi olan her cihaz EYFlash'tan dosya çekebilir. Cisco, Huawei, H3C, Juniper, Aruba, MikroTik, FortiGate ve EdgeRouter için hazır komutlar uygulamada; diğer cihazlar için genel URL biçimi verilir." },
@@ -436,6 +442,6 @@ export const APPS = [
 ];
 
 export const ROADMAP = [
-  { name: "EYConsol 0.2", desc: "Yeni özellikler ve iyileştirmeler.", status: "Planlanıyor", platform: "macOS" },
+  { name: "EYConsol 0.2", desc: "Otomatik güncelleme geldi: yeni sürümü kendisi bulur, sürüm notlarını gösterir ve tek tıkla kurar.", status: "Yayınlandı", done: true, platform: "macOS", href: "/eyconsol/" },
   { name: "Fikrin mi var?", desc: "İhtiyaç duyduğun bir araç varsa yaz, birlikte yapalım.", status: "Açık", platform: "Sen", href: "/#iletisim" }
 ];

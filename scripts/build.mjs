@@ -62,6 +62,7 @@ for (const a of APPS.filter((x) => x.download?.repo)) {
     size: `${(r.bytes / 1048576).toFixed(1).replace(".", ",")} MB`,
     sha256: r.sha256,
     notes: r.notes,
+    published: r.published,
     all: `https://github.com/${repo}/releases`
   });
 }
@@ -389,7 +390,7 @@ function homePage() {
           <div class="q">${r.href ? "+" : "?"}</div>
           <h3>${esc(r.name)}</h3>
           <p>${esc(r.desc)}</p>
-          <div class="row"><span class="status">${esc(r.status)}</span><span class="chip">${esc(r.platform)}</span></div>
+          <div class="row"><span class="status${r.done ? " done" : ""}">${esc(r.status)}</span><span class="chip">${esc(r.platform)}</span></div>
         </${r.href ? "a" : "div"}>`
       ).join("")}
       </div>
@@ -432,6 +433,7 @@ function appPage(a, i) {
       "@context": "https://schema.org",
       "@type": a.platforms.includes("macOS") ? "SoftwareApplication" : "MobileApplication",
       name: a.name,
+      ...(a.alternateName && { alternateName: a.alternateName }),
       description: a.summary,
       url,
       image: abs(a.icon),
@@ -444,6 +446,9 @@ function appPage(a, i) {
       ...(a.download && { downloadUrl: abs(a.download.file), fileSize: a.download.size.replace(",", ".") }),
       ...(liveStores.length && { installUrl: liveStores[0].href, sameAs: liveStores.map((s) => s.href) }),
       ...(a.shots && { screenshot: [...(a.shots.tv || []), ...(a.shots.phone || [])].map(abs) }),
+      ...(a.seo.keywords && { keywords: a.seo.keywords.join(", ") }),
+      ...(a.download?.notes && { releaseNotes: a.download.notes, dateModified: a.download.published }),
+      softwareRequirements: (a.requirements || []).join(", "),
       featureList: a.features.map((f) => f.t)
     },
     {
