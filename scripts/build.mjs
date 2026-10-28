@@ -207,6 +207,44 @@ function visualFor(a) {
         <div class="float-key k2"><em>⌘2</em>Temizle</div>
       </div>`;
   }
+  if (a.visual === "flash") {
+    const img = "cat9k_iosxe.17.09.05.SPA.bin";
+    return `
+      <div class="visual reveal" style="--d:.1s" aria-hidden="true">
+        <div class="window flash tilt-soft" data-flash>
+          <div class="win-bar"><i></i><i></i><i></i><div class="win-tabs"><span>Dosyalar</span><span class="on">Aktarımlar (1)</span><span>Günlük</span></div></div>
+          <div class="fl-body">
+            <div class="fl-side">
+              <small>Sunucular</small>
+              <div class="fl-srv"><b></b><span>TFTP<em>Çalışıyor · UDP 69</em></span><i></i></div>
+              <div class="fl-srv"><b></b><span>FTP<em>Çalışıyor · TCP 21</em></span><i></i></div>
+              <small>Bu Mac'in adresleri</small>
+              <div class="fl-ip on"><span>192.168.1.10<em>en7 · USB LAN</em></span></div>
+              <div class="fl-ip"><span>10.0.0.24<em>en0 · Wi-Fi</em></span></div>
+              <small>Sunucu klasörü</small>
+              <code>~/EYFlash</code>
+            </div>
+            <div class="fl-main">
+              <div class="fl-tr">
+                <span class="fl-arrow">↑</span>
+                <div><div class="fl-h"><b>${img}</b><em>TFTP</em></div><small>Mac → 192.168.1.2</small><i class="fl-bar"></i><small class="fl-st" data-flash-st>452 MB / 1,2 GB · %37 · 11,8 MB/sn</small></div>
+              </div>
+              <div class="fl-tr done">
+                <span class="fl-arrow">↓</span>
+                <div><div class="fl-h"><b>sw-core-01.cfg</b><em>FTP</em></div><small>192.168.1.3 → Mac</small><small class="fl-st">Tamamlandı · 18 KB · 0,2 sn</small></div>
+              </div>
+              <div class="fl-cmd">
+                <small>Cihaz komutu · Cisco IOS / IOS-XE</small>
+                <code><span>copy tftp://192.168.1.10/${img} flash:${img}</span><span>verify /md5 flash:${img}</span></code>
+              </div>
+            </div>
+          </div>
+          <div class="win-status"><span><b>●</b> TFTP ve FTP çalışıyor</span><span>Mac uykuya geçmeyecek</span></div>
+        </div>
+        <div class="float-key k1"><em>⌘C</em>Komutu kopyala</div>
+        <div class="float-key k2"><em>⇣</em>Sürükle-bırak ile dosya ekle</div>
+      </div>`;
+  }
   const imgs = (list, alt) =>
     list.map((s, i) => `<img src="${s}" alt="${esc(alt)} ekran görüntüsü ${i + 1}" ${i === 0 ? 'class="on" fetchpriority="high"' : 'loading="lazy"'} decoding="async">`).join("");
   const dots = (n) => `<div class="dots">${Array.from({ length: n }, (_, i) => `<button aria-label="Görsel ${i + 1}"${i === 0 ? ' class="on"' : ""}></button>`).join("")}</div>`;
@@ -436,7 +474,8 @@ function appPage(a, i) {
     a.links.privacy && btn(a.links.privacy, "Gizlilik")
   ].filter(Boolean);
 
-  const others = APPS.filter((o) => o.id !== a.id);
+  // .cards-3 üç sütunlu: listedeki sıradan devam eden 3 uygulamayı göster
+  const others = [1, 2, 3].map((k) => APPS[(i + k) % APPS.length]);
 
   return (
     head({ title: `${a.seo.title} | EY Apps`, description: a.seo.description, path: `/${a.id}/`, image: a.icon, card: "summary", extra, ld }) +

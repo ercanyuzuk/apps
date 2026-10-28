@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EYFlash — Mac için TFTP ve FTP sunucusu, firmware güncelleme | EY Apps</title>
+  <meta name="description" content="EYFlash Mac&#39;i TFTP ve FTP sunucusu yapar: router, switch ve firewall&#39;lara firmware yükleyin, yapılandırma yedeği alın, hazır cihaz komutlarını kopyalayın.">
+  <meta name="author" content="Ercan Yüzük">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#07080d">
+  <link rel="canonical" href="https://apps.ercanyuzuk.com/eyflash/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EY Apps">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="EYFlash — Mac için TFTP ve FTP sunucusu, firmware güncelleme | EY Apps">
+  <meta property="og:description" content="EYFlash Mac&#39;i TFTP ve FTP sunucusu yapar: router, switch ve firewall&#39;lara firmware yükleyin, yapılandırma yedeği alın, hazır cihaz komutlarını kopyalayın.">
+  <meta property="og:url" content="https://apps.ercanyuzuk.com/eyflash/">
+  <meta property="og:image" content="https://apps.ercanyuzuk.com/assets/icons/eyflash.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="EYFlash — Mac için TFTP ve FTP sunucusu, firmware güncelleme | EY Apps">
+  <meta name="twitter:description" content="EYFlash Mac&#39;i TFTP ve FTP sunucusu yapar: router, switch ve firewall&#39;lara firmware yükleyin, yapılandırma yedeği alın, hazır cihaz komutlarını kopyalayın.">
+  <meta name="twitter:image" content="https://apps.ercanyuzuk.com/assets/icons/eyflash.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EYFlash","description":"Router, switch ve firewall güncellemeleri için macOS TFTP + FTP sunucusu. Cihaz firmware'i Mac'ten çeker ya da yapılandırma yedeğini Mac'e gönderir; doğru komutu EYFlash hazırlar.","url":"https://apps.ercanyuzuk.com/eyflash/","image":"https://apps.ercanyuzuk.com/assets/icons/eyflash.png","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 14","softwareVersion":"1.0.1","inLanguage":"tr","author":{"@type":"Person","name":"Ercan Yüzük","url":"https://www.ercanyuzuk.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://github.com/ercanyuzuk/EYFlash-releases/releases/download/v1.0.1/EYFlash.dmg","fileSize":"2.7 MB","featureList":["TFTP sunucusu","FTP sunucusu","Cihaz komutları","Yedek alma","Canlı aktarımlar","Güvenli varsayılanlar"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EY Apps","item":"https://apps.ercanyuzuk.com/"},{"@type":"ListItem","position":2,"name":"EYFlash","item":"https://apps.ercanyuzuk.com/eyflash/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"EYFlash ücretli mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. EYFlash ücretsizdir; reklam, hesap ya da abonelik yoktur."}},{"@type":"Question","name":"69 ve 21 numaralı portlar için yönetici izni gerekir mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. macOS'ta 69 (TFTP) ve 21 (FTP) portlarını açmak için root ya da sudo gerekmez."}},{"@type":"Question","name":"Cihaz Mac'e bağlanamıyor, ne yapmalıyım?","acceptedAnswer":{"@type":"Answer","text":"Önce cihazla Mac'in aynı ağda olduğunu ve komutta doğru IP adresinin kullanıldığını kontrol edin. macOS Güvenlik Duvarı açıksa Sistem Ayarları → Ağ → Güvenlik Duvarı'nda EYFlash'a gelen bağlantı izni verin."}},{"@type":"Question","name":"Hangi cihazlar destekleniyor?","acceptedAnswer":{"@type":"Answer","text":"TFTP ya da FTP istemcisi olan her cihaz EYFlash'tan dosya çekebilir. Cisco, Huawei, H3C, Juniper, Aruba, MikroTik, FortiGate ve EdgeRouter için hazır komutlar uygulamada; diğer cihazlar için genel URL biçimi verilir."}},{"@type":"Question","name":"EYFlash nasıl güncellenir?","acceptedAnswer":{"@type":"Answer","text":"EYFlash açılışta yeni sürümü denetler; yeni sürüm varsa sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYFlash menüsünden Güncellemeleri Denetle…'yi seçin."}},{"@type":"Question","name":"Hangi Mac'lerde çalışır?","acceptedAnswer":{"@type":"Answer","text":"macOS 14 Sonoma ve sonrasını çalıştıran tüm Apple Silicon ve Intel Mac'lerde çalışır (universal uygulama)."}}]}</script>
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a href="/" class="brand" aria-label="EY Apps ana sayfa">
+      <span class="brand-mark">EY</span><span class="brand-text">apps</span>
+    </a>
+    <nav class="nav-links" aria-label="Uygulamalar">
+      <a href="/eycleaner/">EYCleaner</a>
+      <a href="/eyconsol/">EYConsol</a>
+      <a href="/eyflash/" class="active" aria-current="page">EYFlash</a>
+      <a href="/eyiptv/">eyiptv</a>
+      <a href="/eynetscanner/">EYNetScanner</a>
+    </nav>
+    <a class="nav-cta" href="/#iletisim">İletişim</a>
+  </header>
+
+  <main id="top" class="app-page">
+    <section class="app" style="--a:#ffc93c;--a2:#3b9ee8">
+      <div class="app-bg" aria-hidden="true"></div>
+      <nav class="crumbs reveal" aria-label="Konum"><a href="/">EY Apps</a><span>/</span><a href="/#uygulamalar">Uygulamalar</a><span>/</span><span aria-current="page">EYFlash</span></nav>
+      <div class="app-grid">
+        <div class="app-copy">
+          <div class="app-head reveal">
+            <img src="/assets/icons/eyflash.png" alt="EYFlash uygulama simgesi" width="64" height="64">
+            <div><div class="num">03 / 05 · macOS</div><h1>EYFlash</h1></div>
+          </div>
+          <p class="lead reveal">Firmware güncellemesi için Mac&#39;inizi TFTP ve FTP sunucusu yapın.</p>
+          <p class="summary reveal">Router, switch ve firewall güncellemeleri için macOS TFTP + FTP sunucusu. Cihaz firmware&#39;i Mac&#39;ten çeker ya da yapılandırma yedeğini Mac&#39;e gönderir; doğru komutu EYFlash hazırlar.</p>
+          <div class="meta reveal"><span class="chip">macOS</span><span class="chip">v1.0.1</span><span class="chip">macOS 14+</span><span class="chip">Apple Silicon &amp; Intel</span><span class="chip">Ücretsiz</span></div>
+          <div class="dl-info reveal"><span>✓ Apple tarafından onaylanmış (notarized) Developer ID imzalı. DMG'yi açıp uygulamayı Applications klasörüne sürükleyin; sonraki sürümleri uygulama kendisi bulup kurar. <a href="https://github.com/ercanyuzuk/EYFlash-releases/releases" target="_blank" rel="noopener">Tüm sürümler</a></span><code title="SHA-256">SHA-256 7c3f67246ae01d93…<button type="button" data-copy="7c3f67246ae01d93ec6e59a439f05734511a50fa35d18c4a2dae01d11f4353cf">Kopyala</button></code></div>
+          <div class="actions reveal">
+            <a class="btn btn-primary magnetic" href="https://github.com/ercanyuzuk/EYFlash-releases/releases/download/v1.0.1/EYFlash.dmg"><span>Mac için indir · 2,7 MB</span></a>
+            <a class="btn btn-ghost magnetic" href="https://github.com/ercanyuzuk/EYFlash-releases/releases/tag/v1.0.1" target="_blank" rel="noopener"><span>Sürüm notları</span></a>
+            <a class="btn btn-ghost magnetic" href="mailto:ercanyuzuk@gmail.com?subject=EYFlash"><span>Destek</span></a>
+          </div>
+          
+        </div>
+        
+      <div class="visual reveal" style="--d:.1s" aria-hidden="true">
+        <div class="window flash tilt-soft" data-flash>
+          <div class="win-bar"><i></i><i></i><i></i><div class="win-tabs"><span>Dosyalar</span><span class="on">Aktarımlar (1)</span><span>Günlük</span></div></div>
+          <div class="fl-body">
+            <div class="fl-side">
+              <small>Sunucular</small>
+              <div class="fl-srv"><b></b><span>TFTP<em>Çalışıyor · UDP 69</em></span><i></i></div>
+              <div class="fl-srv"><b></b><span>FTP<em>Çalışıyor · TCP 21</em></span><i></i></div>
+              <small>Bu Mac'in adresleri</small>
+              <div class="fl-ip on"><span>192.168.1.10<em>en7 · USB LAN</em></span></div>
+              <div class="fl-ip"><span>10.0.0.24<em>en0 · Wi-Fi</em></span></div>
+              <small>Sunucu klasörü</small>
+              <code>~/EYFlash</code>
+            </div>
+            <div class="fl-main">
+              <div class="fl-tr">
+                <span class="fl-arrow">↑</span>
+                <div><div class="fl-h"><b>cat9k_iosxe.17.09.05.SPA.bin</b><em>TFTP</em></div><small>Mac → 192.168.1.2</small><i class="fl-bar"></i><small class="fl-st" data-flash-st>452 MB / 1,2 GB · %37 · 11,8 MB/sn</small></div>
+              </div>
+              <div class="fl-tr done">
+                <span class="fl-arrow">↓</span>
+                <div><div class="fl-h"><b>sw-core-01.cfg</b><em>FTP</em></div><small>192.168.1.3 → Mac</small><small class="fl-st">Tamamlandı · 18 KB · 0,2 sn</small></div>
+              </div>
+              <div class="fl-cmd">
+                <small>Cihaz komutu · Cisco IOS / IOS-XE</small>
+                <code><span>copy tftp://192.168.1.10/cat9k_iosxe.17.09.05.SPA.bin flash:cat9k_iosxe.17.09.05.SPA.bin</span><span>verify /md5 flash:cat9k_iosxe.17.09.05.SPA.bin</span></code>
+              </div>
+            </div>
+          </div>
+          <div class="win-status"><span><b>●</b> TFTP ve FTP çalışıyor</span><span>Mac uykuya geçmeyecek</span></div>
+        </div>
+        <div class="float-key k1"><em>⌘C</em>Komutu kopyala</div>
+        <div class="float-key k2"><em>⇣</em>Sürükle-bırak ile dosya ekle</div>
+      </div>
+      </div>
+    </section>
+
+    <section class="section app-section" style="--a:#ffc93c" aria-labelledby="ozellikler">
+      <div class="section-head reveal">
+        <p class="kicker">01 — Özellikler</p>
+        <h2 id="ozellikler">EYFlash neler yapar?</h2>
+      </div>
+      <div class="features">
+        <div class="feature reveal" style="--d:0s"><h3>TFTP sunucusu</h3><p>RFC 1350; blksize, tsize ve timeout seçenekleri. 32 MB üstü imajlar için blok numarası sarması.</p></div>
+        <div class="feature reveal" style="--d:0.07s"><h3>FTP sunucusu</h3><p>Pasif ve aktif mod, REST ile kaldığı yerden devam, anonim ya da kullanıcı/şifre ile giriş.</p></div>
+        <div class="feature reveal" style="--d:0.14s"><h3>Cihaz komutları</h3><p>Cisco, Huawei, H3C, Juniper, Aruba, MikroTik, FortiGate ve EdgeRouter için hazır komut; tek tıkla kopyalayın.</p></div>
+        <div class="feature reveal" style="--d:0s"><h3>Yedek alma</h3><p>Cihaz yapılandırmasını TFTP ya da FTP ile Mac&#39;e gönderir; yedekler sunucu klasörüne kaydedilir.</p></div>
+        <div class="feature reveal" style="--d:0.07s"><h3>Canlı aktarımlar</h3><p>Her aktarımın ilerlemesi, hızı ve süresi; sunucu olayları için ayrıntılı günlük.</p></div>
+        <div class="feature reveal" style="--d:0.14s"><h3>Güvenli varsayılanlar</h3><p>Sunucu klasörü dışına çıkılamaz, FTP bounce engellenir, istenirse yalnızca okuma modu.</p></div>
+      </div>
+    </section>
+
+    <section class="section app-section" style="--a:#ffc93c" aria-labelledby="ayrintilar">
+      <div class="section-head reveal">
+        <p class="kicker">02 — Ayrıntılar</p>
+        <h2 id="ayrintilar">Yakından bakış</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about">
+          <article class="about-block reveal"><h3>Mac&#39;iniz, cihazın dosya sunucusu</h3><p>Ağ cihazlarının çoğu yeni firmware&#39;i ya da yapılandırmayı bir TFTP veya FTP sunucusundan çeker. EYFlash Mac&#39;inizi bu sunucuya çevirir: sunucu klasörüne imaj dosyasını sürükleyin, TFTP ya da FTP&#39;yi açın ve cihazdan komutu çalıştırın.</p><p>Kenar çubuğu Mac&#39;inizin IP adreslerini (USB Ethernet adaptörleri dahil) listeler; cihazla aynı ağdaki adresi seçip tek tıkla kopyalayabilirsiniz. Sunucu çalışırken Mac uykuya geçmez, uzun süren bir yükleme yarıda kalmaz.</p></article>
+          <article class="about-block reveal"><h3>Doğru komut, cihaza göre</h3><p>Bir dosya seçin, cihaz markasını ve işlemi (cihaza dosya al ya da cihazdan yedek gönder) belirleyin; EYFlash Mac&#39;in IP adresi, dosya adı ve protokolle doldurulmuş komutu hazırlar. Cisco IOS/IOS-XE ve NX-OS, Huawei VRP, H3C/HPE Comware, Juniper Junos, Aruba AOS-CX ve ProCurve, MikroTik RouterOS, Fortinet FortiGate ve Ubiquiti EdgeRouter desteklenir.</p><p>Komutları uygulamadan önce cihazınızın yazılım sürümüne göre kontrol edin; bazı modeller farklı dosya sistemi adları ya da VRF ayarı gerektirebilir.</p></article>
+          <article class="about-block reveal"><h3>Büyük imajlar ve kesintisiz aktarım</h3><p>TFTP sunucusu blksize, tsize ve timeout seçeneklerini (RFC 2347/2348/2349) destekler; büyük blok boyutu aktarımı belirgin biçimde hızlandırır. 32 MB&#39;tan büyük imajlarda blok numarası sarması desteklendiği için modern switch imajları da sorunsuz aktarılır.</p><p>FTP sunucusu pasif ve aktif modda çalışır, REST komutuyla yarıda kalan aktarımları kaldığı yerden sürdürür. Bir cihaz dosya çekmeye başladığında Aktarımlar sekmesi açılır ve ilerleme, hız ve süre canlı gösterilir.</p></article>
+          <article class="about-block reveal"><h3>Güvenlik</h3><p>Cihazlar yalnızca seçtiğiniz sunucu klasörüne erişebilir; ../ ya da sembolik bağlarla klasör dışına çıkılamaz ve FTP bounce saldırıları engellenir. Yedek almanız gerekmiyorsa yükleme iznini kapatıp sunucuyu yalnızca okuma modunda çalıştırabilirsiniz. FTP için anonim girişi kapatıp kullanıcı adı ve şifre belirleyebilirsiniz.</p></article>
+        </div>
+        <aside class="specs reveal" aria-label="Teknik bilgiler">
+          <img src="/assets/icons/eyflash.png" alt="" width="72" height="72" loading="lazy">
+          <dl>
+            <div><dt>Sürüm</dt><dd>1.0.1</dd></div>
+            <div><dt>Platform</dt><dd>macOS</dd></div>
+            <div><dt>Gereksinim</dt><dd>macOS 14+ · Apple Silicon &amp; Intel</dd></div>
+            <div><dt>Fiyat</dt><dd>Ücretsiz</dd></div>
+            <div><dt>Boyut</dt><dd>2,7 MB</dd></div>
+            <div><dt>Dil</dt><dd>Türkçe</dd></div>
+            <div><dt>Geliştirici</dt><dd>Ercan Yüzük</dd></div>
+          </dl>
+          <div class="specs-actions"><a class="btn btn-primary magnetic" href="https://github.com/ercanyuzuk/EYFlash-releases/releases/download/v1.0.1/EYFlash.dmg"><span>Mac için indir · 2,7 MB</span></a></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section app-section" style="--a:#ffc93c" aria-labelledby="sss">
+      <div class="section-head reveal">
+        <p class="kicker">03 — Sık sorulanlar</p>
+        <h2 id="sss">Sorular &amp; cevaplar</h2>
+      </div>
+      <div class="faq">
+        <details class="reveal"><summary><h3>EYFlash ücretli mi?</h3></summary><p>Hayır. EYFlash ücretsizdir; reklam, hesap ya da abonelik yoktur.</p></details>
+        <details class="reveal"><summary><h3>69 ve 21 numaralı portlar için yönetici izni gerekir mi?</h3></summary><p>Hayır. macOS&#39;ta 69 (TFTP) ve 21 (FTP) portlarını açmak için root ya da sudo gerekmez.</p></details>
+        <details class="reveal"><summary><h3>Cihaz Mac&#39;e bağlanamıyor, ne yapmalıyım?</h3></summary><p>Önce cihazla Mac&#39;in aynı ağda olduğunu ve komutta doğru IP adresinin kullanıldığını kontrol edin. macOS Güvenlik Duvarı açıksa Sistem Ayarları → Ağ → Güvenlik Duvarı&#39;nda EYFlash&#39;a gelen bağlantı izni verin.</p></details>
+        <details class="reveal"><summary><h3>Hangi cihazlar destekleniyor?</h3></summary><p>TFTP ya da FTP istemcisi olan her cihaz EYFlash&#39;tan dosya çekebilir. Cisco, Huawei, H3C, Juniper, Aruba, MikroTik, FortiGate ve EdgeRouter için hazır komutlar uygulamada; diğer cihazlar için genel URL biçimi verilir.</p></details>
+        <details class="reveal"><summary><h3>EYFlash nasıl güncellenir?</h3></summary><p>EYFlash açılışta yeni sürümü denetler; yeni sürüm varsa sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYFlash menüsünden Güncellemeleri Denetle…&#39;yi seçin.</p></details>
+        <details class="reveal"><summary><h3>Hangi Mac&#39;lerde çalışır?</h3></summary><p>macOS 14 Sonoma ve sonrasını çalıştıran tüm Apple Silicon ve Intel Mac&#39;lerde çalışır (universal uygulama).</p></details>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="diger">
+      <div class="section-head reveal">
+        <p class="kicker">04 — Diğer uygulamalar</p>
+        <h2 id="diger">Bunlara da göz atın.</h2>
+      </div>
+      <div class="cards cards-3">
+        <a class="card reveal tilt" href="/eyiptv/" style="--a:#8b7bff;--d:0s">
+          <div class="card-top">
+            <img class="card-icon" src="/assets/icons/eyiptv.png" alt="eyiptv simgesi" width="78" height="78" loading="lazy">
+            <span class="avail">App Store&#39;da</span>
+          </div>
+          <h3>eyiptv</h3>
+          <p class="tag">Kendi yayınlarınız, büyük ekranda.</p>
+          <p class="card-sum">Apple TV ve iPhone için sade, hızlı bir medya oynatıcı. Servis sağlayıcınızın bilgileriyle ya da M3U playlist adresiyle giriş yapın; canlı TV, film ve dizilerinize tek yerden ulaşın.</p>
+          <div class="platforms"><span class="chip">Apple TV</span><span class="chip">iPhone</span></div>
+          <span class="arrow"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="card reveal tilt" href="/eynetscanner/" style="--a:#22d3ee;--d:0.08s">
+          <div class="card-top">
+            <img class="card-icon" src="/assets/icons/eynetscanner.png" alt="EYNetScanner simgesi" width="78" height="78" loading="lazy">
+            <span class="avail">App Store&#39;da</span>
+          </div>
+          <h3>EYNetScanner</h3>
+          <p class="tag">7 ağ aracı. Tek temiz uygulama.</p>
+          <p class="card-sum">Ping, port tarama, subnet tarama, DNS, IP bilgisi, traceroute ve canlı bağlantı izleme — iPhone&#39;unuzda. Hesap yok, reklam yok, takip yok.</p>
+          <div class="platforms"><span class="chip">iPhone</span></div>
+          <span class="arrow"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="card reveal tilt" href="/eycleaner/" style="--a:#4f8bff;--d:0s">
+          <div class="card-top">
+            <img class="card-icon" src="/assets/icons/eycleaner.png" alt="EYCleaner simgesi" width="78" height="78" loading="lazy">
+            <span class="avail">Ücretsiz · DMG</span>
+          </div>
+          <h3>EYCleaner</h3>
+          <p class="tag">Mac&#39;inizi temizleyin — neyin silineceğini önce görün.</p>
+          <p class="card-sum">Mac için yerel bakım uygulaması: önbellek ve günlük temizliği, disk analizi, büyük dosya bulucu, uygulama kaldırıcı ve canlı sistem durumu. Her temizlikten önce önizleme gösterir.</p>
+          <div class="platforms"><span class="chip">macOS</span></div>
+          <span class="arrow"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year">2026</span> Ercan Yüzük</span>
+    <span class="footer-mid">Swift ile, Türkiye'de yapıldı.</span>
+    <nav class="footer-links" aria-label="Uygulamalar"><a href="/eycleaner/">EYCleaner</a><a href="/eyconsol/">EYConsol</a><a href="/eyflash/">EYFlash</a><a href="/eyiptv/">eyiptv</a><a href="/eynetscanner/">EYNetScanner</a></nav>
+    <a href="#top">Başa dön ↑</a>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Ekran görüntüsü">
+    <button class="lb-close" aria-label="Kapat">×</button>
+    <button class="lb-nav lb-prev" aria-label="Önceki">‹</button>
+    <img alt="">
+    <button class="lb-nav lb-next" aria-label="Sonraki">›</button>
+  </div>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

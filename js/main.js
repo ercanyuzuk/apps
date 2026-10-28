@@ -262,6 +262,23 @@
   }, { threshold: 0.3 });
   $$("[data-term]").forEach((el) => tio.observe(el));
 
+  /* ---------- EYFlash window: running TFTP transfer ---------- */
+  $$("[data-flash]").forEach((win) => {
+    if (reduced) return;
+    const st = $("[data-flash-st]", win), total = 1229;
+    let done = 452;
+    setInterval(() => {
+      if (document.hidden) return;
+      const speed = 10.5 + Math.random() * 3;
+      done = done >= total ? 0 : Math.min(total, done + speed * 1.2);
+      const pct = Math.round((done / total) * 100);
+      win.style.setProperty("--p", pct + "%");
+      st.textContent = done >= total
+        ? "Tamamlandı · 1,2 GB · 1 dk 44 sn"
+        : `${Math.round(done)} MB / 1,2 GB · %${pct} · ${speed.toFixed(1).replace(".", ",")} MB/sn`;
+    }, 1200);
+  });
+
   /* ---------- EYCleaner window: live meters ---------- */
   $$("[data-cleaner]").forEach((win) => {
     if (reduced) return;

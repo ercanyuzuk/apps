@@ -4,7 +4,7 @@
  * sitemap.xml ve robots.txt yeniden üretilir).
  *
  * APPS: yayında olan uygulamalar. Ana sayfada kart, /<id>/ adresinde detay sayfası olarak çizilir.
- *   visual:   "terminal" (EYConsol penceresi), "cleaner" (EYCleaner penceresi),
+ *   visual:   "terminal" (EYConsol penceresi), "cleaner" (EYCleaner penceresi), "flash" (EYFlash penceresi),
  *             "phones" (iPhone ekran görüntüleri), "tv" (Apple TV + iPhone ekran görüntüleri)
  *   stores:   App Store bağlantıları. href boşsa ("") düğme "Yakında" olarak gösterilir.
  *   download: macOS DMG'leri GitHub Releases'tan dağıtılır. `repo` alanına releases deposunu yazın;
@@ -180,6 +180,81 @@ export const APPS = [
       { q: "Açarken güvenlik uyarısı çıkar mı?", a: "Hayır. EYConsol Developer ID ile imzalı ve Apple tarafından onaylanmıştır (notarized)." }
     ],
     marquee: ["SSH", "Serial", "SFTP"]
+  },
+  {
+    id: "eyflash",
+    name: "EYFlash",
+    tagline: "Firmware güncellemesi için Mac'inizi TFTP ve FTP sunucusu yapın.",
+    summary:
+      "Router, switch ve firewall güncellemeleri için macOS TFTP + FTP sunucusu. Cihaz firmware'i Mac'ten çeker ya da yapılandırma yedeğini Mac'e gönderir; doğru komutu EYFlash hazırlar.",
+    icon: "/assets/icons/eyflash.png",
+    platforms: ["macOS"],
+    accent: "#ffc93c",
+    accent2: "#3b9ee8",
+    version: "1.0.1",
+    category: "UtilitiesApplication",
+    os: "macOS 14",
+    visual: "flash",
+    seo: {
+      title: "EYFlash — Mac için TFTP ve FTP sunucusu, firmware güncelleme",
+      description:
+        "EYFlash Mac'i TFTP ve FTP sunucusu yapar: router, switch ve firewall'lara firmware yükleyin, yapılandırma yedeği alın, hazır cihaz komutlarını kopyalayın."
+    },
+    features: [
+      { t: "TFTP sunucusu", d: "RFC 1350; blksize, tsize ve timeout seçenekleri. 32 MB üstü imajlar için blok numarası sarması." },
+      { t: "FTP sunucusu", d: "Pasif ve aktif mod, REST ile kaldığı yerden devam, anonim ya da kullanıcı/şifre ile giriş." },
+      { t: "Cihaz komutları", d: "Cisco, Huawei, H3C, Juniper, Aruba, MikroTik, FortiGate ve EdgeRouter için hazır komut; tek tıkla kopyalayın." },
+      { t: "Yedek alma", d: "Cihaz yapılandırmasını TFTP ya da FTP ile Mac'e gönderir; yedekler sunucu klasörüne kaydedilir." },
+      { t: "Canlı aktarımlar", d: "Her aktarımın ilerlemesi, hızı ve süresi; sunucu olayları için ayrıntılı günlük." },
+      { t: "Güvenli varsayılanlar", d: "Sunucu klasörü dışına çıkılamaz, FTP bounce engellenir, istenirse yalnızca okuma modu." }
+    ],
+    requirements: ["macOS 14+", "Apple Silicon & Intel"],
+    price: "Ücretsiz",
+    download: {
+      repo: "ercanyuzuk/EYFlash-releases",
+      note: "Apple tarafından onaylanmış (notarized) Developer ID imzalı."
+    },
+    links: {
+      support: "mailto:ercanyuzuk@gmail.com?subject=EYFlash"
+    },
+    about: [
+      {
+        h: "Mac'iniz, cihazın dosya sunucusu",
+        p: [
+          "Ağ cihazlarının çoğu yeni firmware'i ya da yapılandırmayı bir TFTP veya FTP sunucusundan çeker. EYFlash Mac'inizi bu sunucuya çevirir: sunucu klasörüne imaj dosyasını sürükleyin, TFTP ya da FTP'yi açın ve cihazdan komutu çalıştırın.",
+          "Kenar çubuğu Mac'inizin IP adreslerini (USB Ethernet adaptörleri dahil) listeler; cihazla aynı ağdaki adresi seçip tek tıkla kopyalayabilirsiniz. Sunucu çalışırken Mac uykuya geçmez, uzun süren bir yükleme yarıda kalmaz."
+        ]
+      },
+      {
+        h: "Doğru komut, cihaza göre",
+        p: [
+          "Bir dosya seçin, cihaz markasını ve işlemi (cihaza dosya al ya da cihazdan yedek gönder) belirleyin; EYFlash Mac'in IP adresi, dosya adı ve protokolle doldurulmuş komutu hazırlar. Cisco IOS/IOS-XE ve NX-OS, Huawei VRP, H3C/HPE Comware, Juniper Junos, Aruba AOS-CX ve ProCurve, MikroTik RouterOS, Fortinet FortiGate ve Ubiquiti EdgeRouter desteklenir.",
+          "Komutları uygulamadan önce cihazınızın yazılım sürümüne göre kontrol edin; bazı modeller farklı dosya sistemi adları ya da VRF ayarı gerektirebilir."
+        ]
+      },
+      {
+        h: "Büyük imajlar ve kesintisiz aktarım",
+        p: [
+          "TFTP sunucusu blksize, tsize ve timeout seçeneklerini (RFC 2347/2348/2349) destekler; büyük blok boyutu aktarımı belirgin biçimde hızlandırır. 32 MB'tan büyük imajlarda blok numarası sarması desteklendiği için modern switch imajları da sorunsuz aktarılır.",
+          "FTP sunucusu pasif ve aktif modda çalışır, REST komutuyla yarıda kalan aktarımları kaldığı yerden sürdürür. Bir cihaz dosya çekmeye başladığında Aktarımlar sekmesi açılır ve ilerleme, hız ve süre canlı gösterilir."
+        ]
+      },
+      {
+        h: "Güvenlik",
+        p: [
+          "Cihazlar yalnızca seçtiğiniz sunucu klasörüne erişebilir; ../ ya da sembolik bağlarla klasör dışına çıkılamaz ve FTP bounce saldırıları engellenir. Yedek almanız gerekmiyorsa yükleme iznini kapatıp sunucuyu yalnızca okuma modunda çalıştırabilirsiniz. FTP için anonim girişi kapatıp kullanıcı adı ve şifre belirleyebilirsiniz."
+        ]
+      }
+    ],
+    faq: [
+      { q: "EYFlash ücretli mi?", a: "Hayır. EYFlash ücretsizdir; reklam, hesap ya da abonelik yoktur." },
+      { q: "69 ve 21 numaralı portlar için yönetici izni gerekir mi?", a: "Hayır. macOS'ta 69 (TFTP) ve 21 (FTP) portlarını açmak için root ya da sudo gerekmez." },
+      { q: "Cihaz Mac'e bağlanamıyor, ne yapmalıyım?", a: "Önce cihazla Mac'in aynı ağda olduğunu ve komutta doğru IP adresinin kullanıldığını kontrol edin. macOS Güvenlik Duvarı açıksa Sistem Ayarları → Ağ → Güvenlik Duvarı'nda EYFlash'a gelen bağlantı izni verin." },
+      { q: "Hangi cihazlar destekleniyor?", a: "TFTP ya da FTP istemcisi olan her cihaz EYFlash'tan dosya çekebilir. Cisco, Huawei, H3C, Juniper, Aruba, MikroTik, FortiGate ve EdgeRouter için hazır komutlar uygulamada; diğer cihazlar için genel URL biçimi verilir." },
+      { q: "EYFlash nasıl güncellenir?", a: "EYFlash açılışta yeni sürümü denetler; yeni sürüm varsa sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYFlash menüsünden Güncellemeleri Denetle…'yi seçin." },
+      { q: "Hangi Mac'lerde çalışır?", a: "macOS 14 Sonoma ve sonrasını çalıştıran tüm Apple Silicon ve Intel Mac'lerde çalışır (universal uygulama)." }
+    ],
+    marquee: ["TFTP", "FTP", "Firmware"]
   },
   {
     id: "eyiptv",
