@@ -5,7 +5,8 @@
  *
  * APPS: yayında olan uygulamalar. Ana sayfada kart, /<id>/ adresinde detay sayfası olarak çizilir.
  *   visual:   "terminal" (EYConsol penceresi), "cleaner" (EYCleaner penceresi), "flash" (EYFlash penceresi),
- *             "phones" (iPhone ekran görüntüleri), "tv" (Apple TV + iPhone ekran görüntüleri)
+ *             "files" (EYConsol dosya tarayıcısı), "phones" (iPhone ekran görüntüleri), "tv" (Apple TV + iPhone ekran görüntüleri)
+ *   showcase: isteğe bağlı; özelliklerden sonra metin + ikinci görselden oluşan bir bölüm ({ kicker, h, p: [], visual }).
  *   stores:   App Store bağlantıları. href boşsa ("") düğme "Yakında" olarak gösterilir.
  *   download: macOS DMG'leri GitHub Releases'tan dağıtılır. `repo` alanına releases deposunu yazın;
  *             build sırasında son sürümün numarası, DMG adresi, boyutu ve SHA-256'sı oradan alınır
@@ -114,28 +115,41 @@ export const APPS = [
     name: "EYConsol",
     tagline: "SSH, seri port ve terminal — tek pencerede.",
     summary:
-      "Ağ ve sistem yöneticileri için macOS terminal uygulaması. SSH oturumları, switch/router konsolları için seri port, SFTP dosya tarayıcısı ve bölünmüş paneller bir arada.",
+      "Ağ ve sistem yöneticileri için macOS terminal uygulaması. SSH oturumları, switch/router konsolları için seri port, SFTP, FTP/FTPS ve SMB dosya tarayıcısı ve bölünmüş paneller bir arada.",
     icon: "/assets/icons/eyconsol.png",
     platforms: ["macOS"],
     accent: "#5ab4ff",
     accent2: "#ff9f43",
-    version: "0.2.0",
+    version: "0.3.0",
     category: "DeveloperApplication",
     os: "macOS 14",
     visual: "terminal",
     seo: {
-      title: "EYConsol — Mac için SSH, seri konsol ve SFTP terminali",
+      title: "EYConsol — Mac için SSH, seri konsol, SFTP, FTP ve SMB",
       description:
-        "EYConsol: ağ ve sistem yöneticileri için macOS terminali. SSH, switch/router seri konsolu, SFTP dosya tarayıcısı, bölünmüş paneller ve snippet'ler. Ücretsiz."
+        "EYConsol: ağ ve sistem yöneticileri için ücretsiz macOS terminali. SSH, switch/router seri konsolu, SFTP, FTP/FTPS ve SMB dosya tarayıcısı, bölünmüş paneller.",
+      keywords: ["mac ssh client", "mac serial console", "mac sftp client", "mac ftp client", "ftps", "smb", "mac terminal"]
     },
     features: [
       { t: "SSH", d: "~/.ssh/config, anahtarlar, ssh-agent, ProxyJump ve port yönlendirme. Şifreler isteğe bağlı Keychain'de." },
       { t: "Seri port", d: "/dev/cu.* portları, özel baud hızları, parite/stop bitleri, RTS/CTS, XON/XOFF, BREAK ve DTR." },
       { t: "SFTP tarayıcı", d: "Çift panel, sürükle-bırak, paralel aktarım ve dosyayı yerel editörde düzenleyip otomatik geri yükleme." },
+      { t: "FTP / FTPS", d: "Düz FTP, AUTH TLS ve örtük TLS. Sunucu sertifikası ilk bağlantıda parmak iziyle onaylanır." },
+      { t: "SMB paylaşımları", d: "NAS ve Windows paylaşımları: misafir ya da şifreyle giriş, smb:// hızlı bağlantı, kayıtlı paylaşımlar." },
       { t: "Bölünmüş paneller", d: "Yan yana / alt alta bölme ve ⌥⌘I ile tüm panellere aynı anda komut yazma." },
       { t: "Snippet'ler", d: "Kayıtlı çok satırlı komutlar; tek tık ya da ⌃⌘1…9 ile gönderme." },
-      { t: "Oturum kaydı", d: "Renk kodlarından arındırılmış düz metin log, isteğe bağlı zaman damgası." }
+      { t: "Oturum kaydı", d: "Renk kodlarından arındırılmış düz metin log, isteğe bağlı zaman damgası." },
+      { t: "Otomatik yeniden bağlanma", d: "SSH koparsa artan aralıklarla yeniden dener; USB-seri adaptör yeniden takılınca portu kendisi açar." }
     ],
+    showcase: {
+      kicker: "Yeni · 0.3",
+      h: "SFTP, FTP ve SMB — aynı dosya tarayıcısında",
+      p: [
+        "Linux sunucuya SFTP, firewall ya da eski bir cihaza FTP/FTPS, ofisteki NAS'a SMB: hepsi aynı çift panelli tarayıcıda, ayrı sekmelerde açılır. Solda Mac'iniz, sağda uzak taraf; dosyaları sürükleyip bırakın.",
+        "FTPS'te sunucu sertifikası ilk bağlantıda parmak iziyle onaylanır ve yüklenen dosyanın boyutu sunucuda doğrulanır. SMB paylaşımlarına misafir olarak ya da kullanıcı adı ve şifreyle bağlanır, smb:// adresini yapıştırıp hemen açabilirsiniz."
+      ],
+      visual: "files"
+    },
     requirements: ["macOS 14+", "Apple Silicon & Intel"],
     price: "Ücretsiz",
     download: {
@@ -160,9 +174,10 @@ export const APPS = [
         ]
       },
       {
-        h: "SFTP dosya tarayıcısı",
+        h: "SFTP, FTP ve SMB dosya tarayıcısı",
         p: [
-          "Açık bir SSH oturumundan SFTP tarayıcısını açın: solda Mac'iniz, sağda uzak sunucu. Dosyaları sürükleyip bırakarak paralel aktarın. Uzak bir dosyayı yerel editörünüzde açın; kaydettiğinizde EYConsol değişikliği sunucuya otomatik geri yükler."
+          "Açık bir SSH oturumundan SFTP tarayıcısını açın: solda Mac'iniz, sağda uzak sunucu. Dosyaları sürükleyip bırakarak paralel aktarın. Uzak bir dosyayı yerel editörünüzde açın; kaydettiğinizde EYConsol değişikliği sunucuya otomatik geri yükler.",
+          "Aynı tarayıcı FTP ve SMB ile de çalışır. FTP sunucularına düz FTP, AUTH TLS ya da örtük TLS (FTPS) ile bağlanın; sertifika ilk bağlantıda parmak iziyle onaylanır. NAS ve Windows paylaşımlarına SMB ile misafir olarak ya da şifreyle bağlanın; kayıtlı paylaşımlar kenar çubuğunda durur."
         ]
       },
       {
@@ -177,11 +192,12 @@ export const APPS = [
       { q: "EYConsol ücretli mi?", a: "Hayır. EYConsol ücretsizdir; reklam, hesap ya da abonelik yoktur." },
       { q: "Mevcut ~/.ssh/config dosyamı kullanabilir miyim?", a: "Evet. Sunucu tanımlarınız, anahtarlarınız, ssh-agent ve ProxyJump ayarlarınız doğrudan kullanılır." },
       { q: "Şifrelerim nerede saklanıyor?", a: "Yalnızca isterseniz, macOS Keychain'de saklanır. Hiçbir sunucuya gönderilmez." },
+      { q: "FTP ve SMB sunucularına bağlanabilir miyim?", a: "Evet. 0.3.0 ile dosya tarayıcısı SFTP'nin yanında FTP, FTPS (AUTH TLS ve örtük TLS) ve SMB paylaşımlarını da açar. Dosya menüsünden Yeni FTP Bağlantısı… ya da Yeni SMB Paylaşımı…'nı seçin ya da smb://, ftp:// veya ftps:// adresini kenar çubuğundaki hızlı bağlan alanına yapıştırın." },
       { q: "Hangi seri port adaptörleriyle çalışır?", a: "macOS'ta /dev/cu.* olarak görünen USB-seri adaptörlerle çalışır. Adaptörünüz için üreticinin sürücüsü gerekiyorsa önce onu kurun." },
       { q: "EYConsol nasıl güncellenir?", a: "0.2.0 ve sonraki sürümler açılışta yeni sürümü denetler, sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYConsol menüsünden Güncellemeleri Denetle…'yi seçin; otomatik denetimi Ayarlar > Güncellemeler'den kapatabilirsiniz. 0.1.0 kullanıyorsanız güncel sürümü bu sayfadan bir kez elle kurun." },
       { q: "Açarken güvenlik uyarısı çıkar mı?", a: "Hayır. EYConsol Developer ID ile imzalı ve Apple tarafından onaylanmıştır (notarized)." }
     ],
-    marquee: ["SSH", "Serial", "SFTP"]
+    marquee: ["SSH", "Serial", "SFTP", "FTP", "SMB"]
   },
   {
     id: "eyflash",
@@ -442,6 +458,6 @@ export const APPS = [
 ];
 
 export const ROADMAP = [
-  { name: "EYConsol 0.2", desc: "Otomatik güncelleme geldi: yeni sürümü kendisi bulur, sürüm notlarını gösterir ve tek tıkla kurar.", status: "Yayınlandı", done: true, platform: "macOS", href: "/eyconsol/" },
+  { name: "EYConsol 0.3", desc: "Dosya tarayıcısına FTP/FTPS ve SMB geldi: sunuculara, firewall'lara ve NAS paylaşımlarına aynı pencereden bağlanın.", status: "Yayınlandı", done: true, platform: "macOS", href: "/eyconsol/" },
   { name: "Fikrin mi var?", desc: "İhtiyaç duyduğun bir araç varsa yaz, birlikte yapalım.", status: "Açık", platform: "Sen", href: "/#iletisim" }
 ];

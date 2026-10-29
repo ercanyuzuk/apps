@@ -8,12 +8,12 @@
     "published": "2026-10-27"
   },
   "ercanyuzuk/eyconsol-releases": {
-    "version": "0.2.0",
-    "file": "https://github.com/ercanyuzuk/eyconsol-releases/releases/download/v0.2.0/EYConsol-0.2.0.dmg",
-    "bytes": 5610828,
-    "sha256": "ca27571854df07316bc2c939a98a27c74492d11ee0736cecd09ee87c3694365b",
-    "notes": "https://github.com/ercanyuzuk/eyconsol-releases/releases/tag/v0.2.0",
-    "published": "2026-10-27"
+    "version": "0.3.0",
+    "file": "https://github.com/ercanyuzuk/eyconsol-releases/releases/download/v0.3.0/EYConsol-0.3.0.dmg",
+    "bytes": 5912126,
+    "sha256": "aeeadac15d7ef3ca661b60ebe9a417468549e3b077bef28c1ac445ed2e7d7674",
+    "notes": "https://github.com/ercanyuzuk/eyconsol-releases/releases/tag/v0.3.0",
+    "published": "2026-10-29"
   },
   "ercanyuzuk/EYFlash-releases": {
     "version": "1.0.1",

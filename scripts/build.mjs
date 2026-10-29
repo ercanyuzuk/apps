@@ -208,6 +208,31 @@ function visualFor(a) {
         <div class="float-key k2"><em>⌘2</em>Temizle</div>
       </div>`;
   }
+  if (a.visual === "files") {
+    const local = [["d", "firmware", "—"], ["d", "yedekler", "—"], ["f", "rapor-ekim.pdf", "2,4 MB"], ["f", "vlan-plan.xlsx", "86 KB"], ["f", "EYConsol-0.3.0.dmg", "5,6 MB"]];
+    return `
+      <div class="visual reveal" style="--d:.1s" aria-hidden="true">
+        <div class="window files tilt-soft" data-files>
+          <div class="win-bar"><i></i><i></i><i></i>
+            <div class="win-tabs"><span>sw01</span><span class="on" data-fx-tab="0">SFTP · web01</span><span data-fx-tab="1">FTPS · fw01</span><span data-fx-tab="2">SMB · nas01</span></div>
+          </div>
+          <div class="fx-body">
+            <div class="fx-pane">
+              <div class="fx-path"><b>Bu Mac</b><span>~/Downloads</span></div>
+              ${local.map(([ic, n, sz], k) => `<div class="fx-row${k === 2 ? " sel" : ""}"><i class="${ic}"></i><span>${n}</span><em>${sz}</em></div>`).join("")}
+            </div>
+            <div class="fx-pane remote">
+              <div class="fx-path"><b data-fx-proto>SFTP</b><span data-fx-url>admin@web01:/var/www</span></div>
+              <div data-fx-rows></div>
+            </div>
+          </div>
+          <div class="fx-tr"><span data-fx-name>rapor-ekim.pdf → web01</span><i class="fl-bar"></i><em data-fx-st>%42</em></div>
+          <div class="win-status"><span><b>●</b> <span data-fx-status>SFTP bağlı · ED25519</span></span><span>Sürükle-bırak ile aktar</span></div>
+        </div>
+        <div class="float-key k1"><em>smb://</em>Hızlı bağlan</div>
+        <div class="float-key k2"><em>TLS</em>Sertifika parmak izi onayı</div>
+      </div>`;
+  }
   if (a.visual === "flash") {
     const img = "cat9k_iosxe.17.09.05.SPA.bin";
     return `
@@ -481,6 +506,9 @@ function appPage(a, i) {
 
   // .cards-3 üç sütunlu: listedeki sıradan devam eden 3 uygulamayı göster
   const others = [1, 2, 3].map((k) => APPS[(i + k) % APPS.length]);
+  // bölüm numaraları sırayla verilir (showcase bölümü olan sayfalarda bir bölüm fazla)
+  let section = 0;
+  const kicker = () => pad(++section);
 
   return (
     head({ title: `${a.seo.title} | EY Apps`, description: a.seo.description, path: `/${a.id}/`, image: a.icon, card: "summary", extra, ld }) +
@@ -511,7 +539,7 @@ function appPage(a, i) {
 
     <section class="section app-section" style="--a:${a.accent}" aria-labelledby="ozellikler">
       <div class="section-head reveal">
-        <p class="kicker">01 — Özellikler</p>
+        <p class="kicker">${kicker()} — Özellikler</p>
         <h2 id="ozellikler">${esc(a.name)} neler yapar?</h2>
       </div>
       <div class="features">
@@ -519,9 +547,22 @@ function appPage(a, i) {
       </div>
     </section>
 
-    <section class="section app-section" style="--a:${a.accent}" aria-labelledby="ayrintilar">
+    ${a.showcase ? `<section class="section app-section showcase" style="--a:${a.accent};--a2:${a.accent2}" aria-labelledby="vitrin">
+      <div class="app-grid">
+        <div class="app-copy">
+          <div class="section-head reveal">
+            <p class="kicker">${kicker()} — ${esc(a.showcase.kicker)}</p>
+            <h2 id="vitrin">${esc(a.showcase.h)}</h2>
+          </div>
+          ${a.showcase.p.map((p) => `<p class="summary reveal">${esc(p)}</p>`).join("\n          ")}
+        </div>
+        ${visualFor(a.showcase)}
+      </div>
+    </section>
+
+    ` : ""}<section class="section app-section" style="--a:${a.accent}" aria-labelledby="ayrintilar">
       <div class="section-head reveal">
-        <p class="kicker">02 — Ayrıntılar</p>
+        <p class="kicker">${kicker()} — Ayrıntılar</p>
         <h2 id="ayrintilar">Yakından bakış</h2>
       </div>
       <div class="about-grid">
@@ -540,7 +581,7 @@ function appPage(a, i) {
 
     <section class="section app-section" style="--a:${a.accent}" aria-labelledby="sss">
       <div class="section-head reveal">
-        <p class="kicker">03 — Sık sorulanlar</p>
+        <p class="kicker">${kicker()} — Sık sorulanlar</p>
         <h2 id="sss">Sorular &amp; cevaplar</h2>
       </div>
       <div class="faq">
@@ -550,7 +591,7 @@ function appPage(a, i) {
 
     <section class="section" aria-labelledby="diger">
       <div class="section-head reveal">
-        <p class="kicker">04 — Diğer uygulamalar</p>
+        <p class="kicker">${kicker()} — Diğer uygulamalar</p>
         <h2 id="diger">Bunlara da göz atın.</h2>
       </div>
       <div class="cards cards-3">${others.map((o, k) => card(o, k)).join("")}

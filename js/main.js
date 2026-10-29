@@ -279,6 +279,46 @@
     }, 1200);
   });
 
+  /* ---------- EYConsol file browser: SFTP → FTPS → SMB tabs ---------- */
+  const fxStates = [
+    { proto: "SFTP", url: "admin@web01:/var/www", status: "SFTP bağlı · ED25519", target: "web01",
+      rows: [["d", "html", "—"], ["d", "logs", "—"], ["f", ".env", "1 KB"], ["f", "nginx.conf", "4 KB"], ["f", "deploy.sh", "2 KB"]] },
+    { proto: "FTPS", url: "ftps://backup@fw01/config", status: "FTPS · AUTH TLS · sertifika onaylı", target: "fw01",
+      rows: [["d", "archive", "—"], ["f", "fw01-running.conf", "64 KB"], ["f", "fw01-2026-10-28.conf", "63 KB"], ["f", "license.lic", "3 KB"]] },
+    { proto: "SMB", url: "smb://nas01/Ortak", status: "SMB bağlı · nas01 · Ortak", target: "nas01",
+      rows: [["d", "Arşiv", "—"], ["d", "Muhasebe", "—"], ["d", "Proje", "—"], ["f", "envanter.xlsx", "312 KB"], ["f", "kurulum.iso", "4,7 GB"]] }
+  ];
+  $$("[data-files]").forEach((win) => {
+    const tabs = $$("[data-fx-tab]", win);
+    let rows = $("[data-fx-rows]", win);
+    const st = $("[data-fx-st]", win), name = $("[data-fx-name]", win);
+    let cur = -1, pct = 0;
+    const show = (k) => {
+      const s = fxStates[k];
+      cur = k;
+      tabs.forEach((t, j) => t.classList.toggle("on", j === k));
+      $("[data-fx-proto]", win).textContent = s.proto;
+      $("[data-fx-url]", win).textContent = s.url;
+      $("[data-fx-status]", win).textContent = s.status;
+      name.textContent = `rapor-ekim.pdf → ${s.target}`;
+      // yeniden ekleyerek giriş animasyonunu tekrar oynat
+      const fresh = rows.cloneNode(false);
+      fresh.innerHTML = s.rows.map(([ic, n, sz]) => `<div class="fx-row"><i class="${ic}"></i><span>${esc(n)}</span><em>${esc(sz)}</em></div>`).join("");
+      rows.replaceWith(fresh);
+      rows = fresh;
+      pct = 0;
+    };
+    show(0);
+    if (reduced) { win.style.setProperty("--p", "42%"); return; }
+    setInterval(() => {
+      if (document.hidden || pct >= 100) return;
+      pct = Math.min(100, pct + 12 + Math.random() * 10);
+      win.style.setProperty("--p", pct + "%");
+      st.textContent = pct >= 100 ? "Tamamlandı" : `%${Math.round(pct)}`;
+      if (pct >= 100) setTimeout(() => show((cur + 1) % fxStates.length), 1400);
+    }, 450);
+  });
+
   /* ---------- EYCleaner window: live meters ---------- */
   $$("[data-cleaner]").forEach((win) => {
     if (reduced) return;
