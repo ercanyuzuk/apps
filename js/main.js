@@ -279,6 +279,18 @@
     }, 1200);
   });
 
+  /* ---------- promo video: own play button, native controls after first play ---------- */
+  $$("[data-video]").forEach((f) => {
+    const v = $("video", f);
+    v.controls = false;
+    f.classList.add("js");
+    $(".video-play", f).addEventListener("click", () => {
+      f.classList.add("playing");
+      v.controls = true;
+      v.play();
+    });
+  });
+
   /* ---------- EYConsol file browser: SFTP → FTPS → SMB tabs ---------- */
   const fxStates = [
     { proto: "SFTP", url: "admin@web01:/var/www", status: "SFTP bağlı · ED25519", target: "web01",

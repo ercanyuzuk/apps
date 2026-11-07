@@ -208,6 +208,18 @@ function visualFor(a) {
         <div class="float-key k2"><em>⌘2</em>Temizle</div>
       </div>`;
   }
+  if (a.visual === "video") {
+    const v = a.video;
+    return `
+      <div class="visual reveal video-visual" style="--d:.1s">
+        <div class="video-frame" data-video>
+          <button type="button" class="video-play" aria-label="Videoyu oynat"><span></span>${esc(a.video.label || "İzle")}</button>
+          <video controls playsinline preload="none" poster="${esc(v.poster)}" title="${esc(a.name)} tanıtım videosu">
+            <source src="${esc(v.src)}" type="video/mp4">
+          </video>
+        </div>
+      </div>`;
+  }
   if (a.visual === "files") {
     const local = [["d", "firmware", "—"], ["d", "yedekler", "—"], ["f", "rapor-ekim.pdf", "2,4 MB"], ["f", "vlan-plan.xlsx", "86 KB"], ["f", "EYConsol-0.3.0.dmg", "5,6 MB"]];
     return `
@@ -291,7 +303,8 @@ function visualFor(a) {
           <div class="phone back" aria-hidden="true"><div class="screen" data-slides data-offset="${p.length - 1}">${imgs(p, a.name)}</div></div>
           <div class="phone back2" aria-hidden="true"><div class="screen" data-slides data-offset="1">${imgs(p, a.name)}</div></div>
           <div class="phone front"><div class="screen" data-slides>${imgs(p, a.name)}</div></div>
-          <div class="radar" aria-hidden="true"><i style="left:30%;top:28%"></i><i style="left:68%;top:40%;animation-delay:-1s"></i><i style="left:44%;top:70%;animation-delay:-2s"></i></div>
+          ${a.radar ? `<div class="radar" aria-hidden="true"><i style="left:30%;top:28%"></i><i style="left:68%;top:40%;animation-delay:-1s"></i><i style="left:44%;top:70%;animation-delay:-2s"></i></div>` : ""}
+          ${(a.floats || []).map(([em, t], k) => `<div class="float-key k${k + 1}" aria-hidden="true"><em>${esc(em)}</em>${esc(t)}</div>`).join("")}
         </div>
         ${dots(p.length)}
       </div>`;
@@ -476,6 +489,17 @@ function appPage(a, i) {
       softwareRequirements: (a.requirements || []).join(", "),
       featureList: a.features.map((f) => f.t)
     },
+    ...(a.showcase?.video ? [{
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: `${a.name} tanıtım videosu`,
+      description: a.showcase.p[0],
+      thumbnailUrl: abs(a.showcase.video.poster),
+      contentUrl: abs(a.showcase.video.src),
+      uploadDate: a.showcase.video.uploaded,
+      duration: a.showcase.video.duration,
+      inLanguage: "tr"
+    }] : []),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -556,7 +580,7 @@ function appPage(a, i) {
           </div>
           ${a.showcase.p.map((p) => `<p class="summary reveal">${esc(p)}</p>`).join("\n          ")}
         </div>
-        ${visualFor(a.showcase)}
+        ${visualFor({ ...a.showcase, name: a.name })}
       </div>
     </section>
 

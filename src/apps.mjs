@@ -7,6 +7,9 @@
  *   visual:   "terminal" (EYConsol penceresi), "cleaner" (EYCleaner penceresi), "flash" (EYFlash penceresi),
  *             "files" (EYConsol dosya tarayıcısı), "phones" (iPhone ekran görüntüleri), "tv" (Apple TV + iPhone ekran görüntüleri)
  *   showcase: isteğe bağlı; özelliklerden sonra metin + ikinci görselden oluşan bir bölüm ({ kicker, h, p: [], visual }).
+ *             visual: "video" ise video: { src, poster, duration (ISO 8601, ör. "PT1M17S"), uploaded } ekleyin.
+ *   floats:   isteğe bağlı; "phones" görselinin kenarında yüzen iki etiket ([[vurgu, metin], [vurgu, metin]]).
+ *   radar:    true ise "phones" görselinde radar rozeti gösterilir (EYNetScanner).
  *   stores:   App Store bağlantıları. href boşsa ("") düğme "Yakında" olarak gösterilir.
  *   download: macOS DMG'leri GitHub Releases'tan dağıtılır. `repo` alanına releases deposunu yazın;
  *             build sırasında son sürümün numarası, DMG adresi, boyutu ve SHA-256'sı oradan alınır
@@ -392,6 +395,7 @@ export const APPS = [
     os: "iOS 26.2",
     appStoreId: "6823558559",
     visual: "phones",
+    radar: true,
     seo: {
       title: "EYNetScanner — iPhone için ping, port ve ağ tarayıcı",
       description:
@@ -454,10 +458,106 @@ export const APPS = [
       { q: "Hesap açmam gerekiyor mu?", a: "Hayır. Hesap, kayıt ya da giriş yoktur; uygulamayı açıp hemen kullanabilirsiniz." }
     ],
     marquee: ["Ping", "Port Scan", "Traceroute", "DNS"]
+  },
+  {
+    id: "eyrack",
+    name: "EYRack",
+    alternateName: "EYRack: Kabin ve Port Takibi",
+    tagline: "Hangi kablo nereye gidiyor? Artık cebinizde.",
+    summary:
+      "Sistem odası ve kabin dokümantasyonu iPhone ve iPad'de: kabin önden görünümü, port ve kablo eşleştirme, VLAN'lar, QR etiketler, değişiklik geçmişi ve PDF rapor. Excel tablolarına gerek kalmaz.",
+    icon: "/assets/icons/eyrack.png",
+    platforms: ["iPhone", "iPad"],
+    accent: "#3d8bff",
+    accent2: "#2dd4bf",
+    version: "1.0",
+    category: "UtilitiesApplication",
+    os: "iOS 18",
+    appStoreId: "6830734740",
+    visual: "phones",
+    floats: [["QR", "Etiketi okut, porta git"], ["VLAN 20", "Ses (IP Telefon)"]],
+    seo: {
+      title: "EYRack — iPhone ve iPad için kabin, port ve kablo takibi",
+      description:
+        "EYRack: rack, patch panel ve switch port dokümantasyonu. Kabin önden görünümü, kablo ve VLAN takibi, QR etiket, değişiklik geçmişi, PDF rapor. Ücretsiz.",
+      keywords: ["rack dokümantasyonu", "patch panel takibi", "port eşleştirme", "kablo etiketi", "VLAN", "sistem odası", "network dokümantasyon", "QR etiket"]
+    },
+    shots: {
+      phone: [
+        "/assets/shots/eyrack-01_rack.jpg",
+        "/assets/shots/eyrack-02_device.jpg",
+        "/assets/shots/eyrack-03_port.jpg",
+        "/assets/shots/eyrack-04_history.jpg",
+        "/assets/shots/eyrack-05_site.jpg"
+      ]
+    },
+    features: [
+      { t: "Kabin önden görünümü", d: "U numaralarıyla patch panel, switch, firewall ve sunucular. Sürükle-bırak ile taşıma, çakışma uyarısı, doluluk oranı." },
+      { t: "Port ve kablo", d: "Ön panel port ızgarası; durum, port tipi, VLAN, access/trunk. Kablo etiketi, tipi, rengi ve arkada gittiği priz." },
+      { t: "VLAN ve saha cihazları", d: "Lokasyon başına VLAN listesi; AP, kamera, yazıcı gibi saha cihazları bağlı oldukları portla birlikte." },
+      { t: "QR etiketler", d: "Kabin, cihaz, port ve kablo etiketleri A4 sayfaya; QR'ı okutunca ilgili ekran doğrudan açılır." },
+      { t: "Değişiklik geçmişi", d: "Kim, ne zaman, neyi neyden neye değiştirdi. Lokasyon, kabin, cihaz ya da port bazında arama." },
+      { t: "Rapor ve Excel", d: "Fotoğraflı PDF rapor; Excel (.xlsx) ve CSV içe aktarma, Excel'de açılan CSV dışa aktarma, yedek dosyası." }
+    ],
+    showcase: {
+      kicker: "Tanıtım",
+      h: "77 saniyede EYRack",
+      p: [
+        "Sistem odasında hangi kablonun nereye gittiğini hâlâ Excel tablolarında mı arıyorsunuz? EYRack kabini önden, portları tek tek, kabloları iki ucuyla gösterir.",
+        "İlk açılışta \"Örnek veriyle dene\"ye dokunun: iki lokasyon, üç kabin ve bağlantıları hazır gelir; videodaki ekranları hemen kendiniz gezebilirsiniz."
+      ],
+      visual: "video",
+      video: { src: "/assets/video/eyrack-tanitim.mp4", poster: "/assets/video/eyrack-tanitim.jpg", duration: "PT1M17S", uploaded: "2026-11-07", label: "İzle · 1:17" }
+    },
+    requirements: ["iOS 18+", "iPadOS 18+"],
+    price: "Ücretsiz",
+    stores: [{ label: "App Store'dan indir", href: "https://apps.apple.com/tr/app/eyrack-kabin-ve-port-takibi/id6830734740" }],
+    links: {
+      support: "https://www.ercanyuzuk.com/p/eyrack-destek.html",
+      privacy: "https://www.ercanyuzuk.com/p/eyrack-gizlilik.html"
+    },
+    about: [
+      {
+        h: "Kabini önden görün",
+        p: [
+          "Her kabin U numaralarıyla önden görünür: patch panel, switch, firewall, sunucu ve UPS renkli bloklar hâlinde. Bir cihazı sürükleyip başka bir U'ya bırakın; çakışan yerleşim engellenir. Cihazı başka bir kabine taşıyabilir, yanlışlıkla yaptıysanız tek dokunuşla geri alabilirsiniz.",
+          "Projeler müşteri bazında düzenlenir: proje → lokasyon (bina, şube) → kabin. Doluluk oranı ve cihaz sayısı her kabinde bir bakışta görünür."
+        ]
+      },
+      {
+        h: "Her port, her kablo",
+        p: [
+          "Cihazın ön paneli port ızgarası olarak çizilir (ör. 24× RJ45 + 4× SFP); portlar durumuna ya da VLAN'ına göre renklenir. Port başına durum, port tipi, VLAN, access/trunk ve izinli VLAN'lar tutulur. Birden çok portu seçip VLAN'ını ya da durumunu tek seferde değiştirebilirsiniz.",
+          "Kabloyu iki port arasında kaydedin: etiket, tip (Cat5e–Cat7, fiber, DAC), renk ve uzunluk. Patch panel portu için kablonun arkada gittiği priz ya da oda, switch portu için bağlı uç cihaz; bağlantı zinciri AP → patch panel → switch portu olarak gösterilir."
+        ]
+      },
+      {
+        h: "QR etiket, geçmiş ve rapor",
+        p: [
+          "Kabin, cihaz, port ve kablo etiketlerini A4 yapışkanlı etiket sayfalarına yazdırın. Sahada etiketi uygulamanın QR tarayıcısıyla okutun; ilgili kabin, cihaz ya da port doğrudan açılır.",
+          "Her değişiklik kim, ne zaman, neyden neye bilgisiyle kaydedilir. Lokasyon için kabin önden görünümleri, port tabloları, kablo listesi ve fotoğrafları içeren PDF rapor oluşturun; mevcut Excel tablolarınızı içe aktararak hızla başlayın."
+        ]
+      },
+      {
+        h: "Verileriniz sizde",
+        p: [
+          "Veriler cihazınızda ve isterseniz kendi iCloud hesabınızda tutulur; iPhone ve iPad arasında otomatik eşitlenir. Hesap açmanız gerekmez, reklam ve izleme yoktur, geliştirici verilerinizi görmez."
+        ]
+      }
+    ],
+    faq: [
+      { q: "EYRack ücretli mi?", a: "Hayır. EYRack App Store'da ücretsizdir; reklam, hesap ya da abonelik yoktur." },
+      { q: "Hangi cihazlarda çalışır?", a: "iOS 18 veya sonrasını çalıştıran iPhone'larda ve iPadOS 18 veya sonrasını çalıştıran iPad'lerde çalışır." },
+      { q: "Mevcut Excel tablolarımı aktarabilir miyim?", a: "Evet. Excel (.xlsx) ya da CSV dosyanızı seçin; sütun başlıkları otomatik eşlenir, önizlemeden sonra yeni ya da mevcut bir lokasyona eklenir. Karşı cihaz ve port sütunları kabloya dönüştürülür." },
+      { q: "Verilerim nerede saklanıyor?", a: "Cihazınızda ve iCloud'da oturum açtıysanız kendi özel iCloud hesabınızda. Veriler geliştiriciye ya da üçüncü taraflara gönderilmez." },
+      { q: "Kamera izni neden isteniyor?", a: "Yalnızca EYRack'in kendi QR etiketlerini okumak ve kabin, cihaz ya da port fotoğrafı çekmek için. İzin vermezseniz diğer özellikler çalışmaya devam eder." },
+      { q: "Uygulamayı denemek için veri girmem gerekiyor mu?", a: "Hayır. İlk açılışta \"Örnek veriyle dene\"ye dokunun; iki lokasyon, üç kabin, cihazlar, portlar, kablolar ve VLAN'lar hazır gelir. Örnek veriyi sonradan Ayarlar'dan da ekleyebilirsiniz." }
+    ],
+    marquee: ["Rack", "Patch Panel", "VLAN", "QR"]
   }
 ];
 
 export const ROADMAP = [
-  { name: "EYConsol 0.3", desc: "Dosya tarayıcısına FTP/FTPS ve SMB geldi: sunuculara, firewall'lara ve NAS paylaşımlarına aynı pencereden bağlanın.", status: "Yayınlandı", done: true, platform: "macOS", href: "/eyconsol/" },
+  { name: "EYRack 1.0", desc: "Kabin, port ve kablo dokümantasyonu iPhone ve iPad'de: önden görünüm, VLAN'lar, QR etiketler ve değişiklik geçmişi.", status: "Yayınlandı", done: true, platform: "iPhone · iPad", href: "/eyrack/" },
   { name: "Fikrin mi var?", desc: "İhtiyaç duyduğun bir araç varsa yaz, birlikte yapalım.", status: "Açık", platform: "Sen", href: "/#iletisim" }
 ];
