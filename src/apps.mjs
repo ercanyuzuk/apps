@@ -7,7 +7,7 @@
  *   visual:   "terminal" (EYConsol penceresi), "cleaner" (EYCleaner penceresi), "flash" (EYFlash penceresi),
  *             "files" (EYConsol dosya tarayıcısı), "phones" (iPhone ekran görüntüleri), "tv" (Apple TV + iPhone ekran görüntüleri)
  *   showcase: isteğe bağlı; özelliklerden sonra metin + ikinci görselden oluşan bir bölüm ({ kicker, h, p: [], visual }).
- *             visual: "video" ise video: { src, poster, duration (ISO 8601, ör. "PT1M17S"), uploaded } ekleyin.
+ *             visual: "video" ise video: { src, poster, duration (ISO 8601, ör. "PT1M17S"), uploaded, aspect? ("9 / 16"; varsayılan 4 / 5) } ekleyin.
  *   floats:   isteğe bağlı; "phones" görselinin kenarında yüzen iki etiket ([[vurgu, metin], [vurgu, metin]]).
  *   radar:    true ise "phones" görselinde radar rozeti gösterilir (EYNetScanner).
  *   stores:   App Store bağlantıları. href boşsa ("") düğme "Yakında" olarak gösterilir.
@@ -53,6 +53,16 @@ export const APPS = [
       { t: "Yükleyiciler", d: "İndirilenler'de unutulan .dmg, .pkg ve arşiv dosyalarını listeler." },
       { t: "Menü çubuğu", d: "✨ simgesinden sağlık skoru ve sistem özeti; pencere kapalıyken de çalışır." }
     ],
+    showcase: {
+      kicker: "Tanıtım",
+      h: "31 saniyede EYCleaner",
+      p: [
+        "Kısa bir turla EYCleaner: sağlık skoru ve canlı sistem durumu, önizlemeli temizlik, Disk Analizi, Büyük Dosyalar, Uygulama Kaldır ve menü çubuğu özeti.",
+        "Videodaki her temizlik önce deneme modunda çalışır; neyin silineceğini görüp onayladıktan sonra yer açılır."
+      ],
+      visual: "video",
+      video: { src: "/assets/video/eycleaner-tanitim.mp4", poster: "/assets/video/eycleaner-tanitim.jpg", duration: "PT31S", uploaded: "2026-11-08", label: "İzle · 0:31", aspect: "9 / 16" }
+    },
     requirements: ["macOS 15+", "Apple Silicon & Intel"],
     price: "Ücretsiz",
     download: {
@@ -507,7 +517,7 @@ export const APPS = [
         "İlk açılışta \"Örnek veriyle dene\"ye dokunun: iki lokasyon, üç kabin ve bağlantıları hazır gelir; videodaki ekranları hemen kendiniz gezebilirsiniz."
       ],
       visual: "video",
-      video: { src: "/assets/video/eyrack-tanitim.mp4", poster: "/assets/video/eyrack-tanitim.jpg", duration: "PT1M17S", uploaded: "2026-11-07", label: "İzle · 1:17" }
+      video: { src: "/assets/video/eyrack-tanitim.mp4", poster: "/assets/video/eyrack-tanitim.jpg", duration: "PT1M17S", uploaded: "2026-11-08", label: "İzle · 1:17" }
     },
     requirements: ["iOS 18+", "iPadOS 18+"],
     price: "Ücretsiz",

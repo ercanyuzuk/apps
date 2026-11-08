@@ -212,7 +212,7 @@ function visualFor(a) {
     const v = a.video;
     return `
       <div class="visual reveal video-visual" style="--d:.1s">
-        <div class="video-frame" data-video>
+        <div class="video-frame" data-video${v.aspect ? ` style="--ar:${esc(v.aspect)};--vw:${v.aspect === "9 / 16" ? "360px" : "420px"}"` : ""}>
           <button type="button" class="video-play" aria-label="Videoyu oynat"><span></span>${esc(a.video.label || "İzle")}</button>
           <video controls playsinline preload="none" poster="${esc(v.poster)}" title="${esc(a.name)} tanıtım videosu">
             <source src="${esc(v.src)}" type="video/mp4">
