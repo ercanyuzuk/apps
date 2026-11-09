@@ -428,6 +428,16 @@ export const APPS = [
       { t: "IP Info", d: "Genel IP'niz ya da herhangi bir IP'nin konumu, ISS'si ve saat dilimi." },
       { t: "Traceroute & Monitor", d: "Atlama atlama yol analizi ve sürekli bağlantı/gecikme izleme." }
     ],
+    showcase: {
+      kicker: "Tanıtım",
+      h: "37 saniyede EYNetScanner",
+      p: [
+        "Kısa bir turla yedi araç: ping ile gecikme ve paket kaybı, port tarayıcı, DNS sorgusu, IP bilgisi, traceroute ve canlı bağlantı izleme.",
+        "Hesap açmanız gerekmez, reklam ya da takip yoktur; uygulamayı açıp hemen ağınızı incelemeye başlayabilirsiniz."
+      ],
+      visual: "video",
+      video: { src: "/assets/video/eynetscanner-tanitim.mp4", poster: "/assets/video/eynetscanner-tanitim.jpg", duration: "PT37S", uploaded: "2026-11-09", label: "İzle · 0:37", aspect: "9 / 16" }
+    },
     requirements: ["iOS 26.2+"],
     price: "Ücretsiz",
     stores: [{ label: "App Store'dan indir", href: "https://apps.apple.com/us/app/eynetscanner/id6823558559" }],
