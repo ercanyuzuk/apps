@@ -19,6 +19,7 @@ const TODAY = new Date().toISOString().slice(0, 10);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const abs = (p) => (p.startsWith("http") ? p : SITE + p);
 const pad = (n) => String(n).padStart(2, "0");
+const showcases = (a) => [].concat(a.showcase || []);
 const ldJson = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, "\\u003c")}</script>`;
 
 const arrow = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -212,7 +213,7 @@ function visualFor(a) {
     const v = a.video;
     return `
       <div class="visual reveal video-visual" style="--d:.1s">
-        <div class="video-frame" data-video${v.aspect ? ` style="--ar:${esc(v.aspect)};--vw:${v.aspect === "9 / 16" ? "360px" : "420px"}"` : ""}>
+        <div class="video-frame" data-video${v.aspect ? ` style="--ar:${esc(v.aspect)};--vw:${{ "9 / 16": "360px", "16 / 9": "960px" }[v.aspect] || "420px"}"` : ""}>
           <button type="button" class="video-play" aria-label="Videoyu oynat"><span></span>${esc(a.video.label || "İzle")}</button>
           <video controls playsinline preload="none" poster="${esc(v.poster)}" title="${esc(a.name)} tanıtım videosu">
             <source src="${esc(v.src)}" type="video/mp4">
@@ -489,17 +490,17 @@ function appPage(a, i) {
       softwareRequirements: (a.requirements || []).join(", "),
       featureList: a.features.map((f) => f.t)
     },
-    ...(a.showcase?.video ? [{
+    ...showcases(a).filter((sc) => sc.video).map((sc) => ({
       "@context": "https://schema.org",
       "@type": "VideoObject",
       name: `${a.name} tanıtım videosu`,
-      description: a.showcase.p[0],
-      thumbnailUrl: abs(a.showcase.video.poster),
-      contentUrl: abs(a.showcase.video.src),
-      uploadDate: a.showcase.video.uploaded,
-      duration: a.showcase.video.duration,
+      description: sc.p[0],
+      thumbnailUrl: abs(sc.video.poster),
+      contentUrl: abs(sc.video.src),
+      uploadDate: sc.video.uploaded,
+      duration: sc.video.duration,
       inLanguage: "tr"
-    }] : []),
+    })),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -571,20 +572,24 @@ function appPage(a, i) {
       </div>
     </section>
 
-    ${a.showcase ? `<section class="section app-section showcase" style="--a:${a.accent};--a2:${a.accent2}" aria-labelledby="vitrin">
+    ${showcases(a).map((sc, k) => {
+      const id = k ? `vitrin-${k + 1}` : "vitrin";
+      const wide = sc.video?.aspect === "16 / 9";
+      return `<section class="section app-section showcase${wide ? " wide" : ""}" style="--a:${a.accent};--a2:${a.accent2}" aria-labelledby="${id}">
       <div class="app-grid">
         <div class="app-copy">
           <div class="section-head reveal">
-            <p class="kicker">${kicker()} — ${esc(a.showcase.kicker)}</p>
-            <h2 id="vitrin">${esc(a.showcase.h)}</h2>
+            <p class="kicker">${kicker()} — ${esc(sc.kicker)}</p>
+            <h2 id="${id}">${esc(sc.h)}</h2>
           </div>
-          ${a.showcase.p.map((p) => `<p class="summary reveal">${esc(p)}</p>`).join("\n          ")}
+          ${sc.p.map((p) => `<p class="summary reveal">${esc(p)}</p>`).join("\n          ")}
         </div>
-        ${visualFor({ ...a.showcase, name: a.name })}
+        ${visualFor({ ...sc, name: a.name })}
       </div>
     </section>
 
-    ` : ""}<section class="section app-section" style="--a:${a.accent}" aria-labelledby="ayrintilar">
+    `;
+    }).join("")}<section class="section app-section" style="--a:${a.accent}" aria-labelledby="ayrintilar">
       <div class="section-head reveal">
         <p class="kicker">${kicker()} — Ayrıntılar</p>
         <h2 id="ayrintilar">Yakından bakış</h2>

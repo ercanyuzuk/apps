@@ -443,6 +443,9 @@ a { color: inherit; text-decoration: none; }
 /* ---------- visual: EYConsol file browser (SFTP / FTP / SMB) ---------- */
 .showcase .app-grid > * { min-width: 0; }
 .showcase .app-copy .summary + .summary { margin-top: 14px; }
+.showcase.wide .app-grid { grid-template-columns: 1fr; gap: 36px; }
+.showcase.wide .app-copy { max-width: 760px; }
+.showcase.wide .video-play { bottom: 20px; }
 .files .win-tabs span { transition: background .3s, color .3s; }
 .fx-body { display: grid; grid-template-columns: 1fr 1fr; height: 300px; font-size: 12.5px; }
 .fx-pane { display: flex; flex-direction: column; gap: 1px; padding: 10px 10px 0; min-width: 0; overflow: hidden; }

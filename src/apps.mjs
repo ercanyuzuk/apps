@@ -6,8 +6,8 @@
  * APPS: yayında olan uygulamalar. Ana sayfada kart, /<id>/ adresinde detay sayfası olarak çizilir.
  *   visual:   "terminal" (EYConsol penceresi), "cleaner" (EYCleaner penceresi), "flash" (EYFlash penceresi),
  *             "files" (EYConsol dosya tarayıcısı), "phones" (iPhone ekran görüntüleri), "tv" (Apple TV + iPhone ekran görüntüleri)
- *   showcase: isteğe bağlı; özelliklerden sonra metin + ikinci görselden oluşan bir bölüm ({ kicker, h, p: [], visual }).
- *             visual: "video" ise video: { src, poster, duration (ISO 8601, ör. "PT1M17S"), uploaded, aspect? ("9 / 16"; varsayılan 4 / 5) } ekleyin.
+ *   showcase: isteğe bağlı (tek nesne ya da dizi; her biri ayrı bölüm); özelliklerden sonra metin + ikinci görselden oluşan bir bölüm ({ kicker, h, p: [], visual }).
+ *             visual: "video" ise video: { src, poster, duration (ISO 8601, ör. "PT1M17S"), uploaded, aspect? ("9 / 16" | "16 / 9" = tam genişlik; varsayılan 4 / 5) } ekleyin.
  *   floats:   isteğe bağlı; "phones" görselinin kenarında yüzen iki etiket ([[vurgu, metin], [vurgu, metin]]).
  *   radar:    true ise "phones" görselinde radar rozeti gösterilir (EYNetScanner).
  *   stores:   App Store bağlantıları. href boşsa ("") düğme "Yakında" olarak gösterilir.
@@ -154,7 +154,7 @@ export const APPS = [
       { t: "Oturum kaydı", d: "Renk kodlarından arındırılmış düz metin log, isteğe bağlı zaman damgası." },
       { t: "Otomatik yeniden bağlanma", d: "SSH koparsa artan aralıklarla yeniden dener; USB-seri adaptör yeniden takılınca portu kendisi açar." }
     ],
-    showcase: {
+    showcase: [{
       kicker: "Yeni · 0.3",
       h: "SFTP, FTP ve SMB — aynı dosya tarayıcısında",
       p: [
@@ -162,7 +162,16 @@ export const APPS = [
         "FTPS'te sunucu sertifikası ilk bağlantıda parmak iziyle onaylanır ve yüklenen dosyanın boyutu sunucuda doğrulanır. SMB paylaşımlarına misafir olarak ya da kullanıcı adı ve şifreyle bağlanır, smb:// adresini yapıştırıp hemen açabilirsiniz."
       ],
       visual: "files"
-    },
+    }, {
+      kicker: "Tanıtım",
+      h: "39 saniyede EYConsol",
+      p: [
+        "Dört iş için dört ayrı pencere yerine tek uygulama: yerel terminal, kayıtlı SSH bağlantıları, bölünmüş paneller ve tüm panellere aynı anda yazma, sürükle-bırak SFTP, seri port, snippet'ler ve oturum kaydı.",
+        "Şifreler isteğe bağlı olarak macOS Keychain'de saklanır. EYConsol ücretsizdir; macOS 14 ve üzeri sürümlerde çalışır."
+      ],
+      visual: "video",
+      video: { src: "/assets/video/eyconsol-tanitim.mp4", poster: "/assets/video/eyconsol-tanitim.jpg", duration: "PT39S", uploaded: "2026-11-10", label: "İzle · 0:39", aspect: "16 / 9" }
+    }],
     requirements: ["macOS 14+", "Apple Silicon & Intel"],
     price: "Ücretsiz",
     download: {
