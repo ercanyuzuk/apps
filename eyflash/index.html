@@ -30,6 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EYFlash","alternateName":"EYFlash TFTP Server","description":"Router, switch ve firewall güncellemeleri için macOS TFTP + FTP sunucusu. Cihaz firmware'i Mac'ten çeker ya da yapılandırma yedeğini Mac'e gönderir; doğru komutu EYFlash hazırlar.","url":"https://apps.ercanyuzuk.com/eyflash/","image":"https://apps.ercanyuzuk.com/assets/icons/eyflash.png","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 14","softwareVersion":"1.0.1","inLanguage":"tr","author":{"@type":"Person","name":"Ercan Yüzük","url":"https://www.ercanyuzuk.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://github.com/ercanyuzuk/EYFlash-releases/releases/download/v1.0.1/EYFlash.dmg","fileSize":"2.7 MB","keywords":"mac tftp server, macOS TFTP sunucusu, mac ftp server, tftp server macos, firmware yükleme, cisco ios upgrade tftp, switch config yedeği, copy tftp flash","releaseNotes":"https://github.com/ercanyuzuk/EYFlash-releases/releases/tag/v1.0.1","dateModified":"2026-10-27","softwareRequirements":"macOS 14+, Apple Silicon & Intel","featureList":["TFTP sunucusu","FTP sunucusu","Cihaz komutları","Yedek alma","Canlı aktarımlar","Güvenli varsayılanlar"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"EYFlash tanıtım videosu","description":"Tek tıkla TFTP ve FTP sunucusu; firmware dosyasını sürükleyip bırakın, Cisco'dan FortiGate'e 10 üretici için hazır cihaz komutunu kopyalayın, cihaz dosyayı çekerken ilerlemeyi ve hızı canlı izleyin.","thumbnailUrl":"https://apps.ercanyuzuk.com/assets/video/eyflash-tanitim.jpg","contentUrl":"https://apps.ercanyuzuk.com/assets/video/eyflash-tanitim.mp4","uploadDate":"2026-11-10","duration":"PT31S","inLanguage":"tr"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EY Apps","item":"https://apps.ercanyuzuk.com/"},{"@type":"ListItem","position":2,"name":"EYFlash","item":"https://apps.ercanyuzuk.com/eyflash/"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"EYFlash ücretli mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. EYFlash ücretsizdir; reklam, hesap ya da abonelik yoktur."}},{"@type":"Question","name":"Mac'te TFTP sunucusu nasıl çalıştırılır?","acceptedAnswer":{"@type":"Answer","text":"EYFlash'ı açın, sunucu klasörü olarak bir klasör seçin (varsayılan ~/EYFlash) ve kenar çubuğundan TFTP'yi açın. Firmware dosyasını klasöre sürükleyin; cihaz, kenar çubuğunda görünen Mac IP adresinden dosyayı çekebilir. Terminal komutu ya da yönetici şifresi gerekmez."}},{"@type":"Question","name":"Cisco switch'e Mac'ten IOS imajı nasıl yüklenir?","acceptedAnswer":{"@type":"Answer","text":"İmaj dosyasını EYFlash'ın sunucu klasörüne koyun, TFTP'yi açın ve dosyayı seçip cihaz olarak Cisco IOS / IOS-XE'yi işaretleyin. EYFlash, Mac'in IP adresiyle doldurulmuş copy tftp://\u003cMac IP>/\u003cimaj> flash: ve verify /md5 komutlarını hazırlar; bunları switch'in konsolunda çalıştırmanız yeterlidir."}},{"@type":"Question","name":"69 ve 21 numaralı portlar için yönetici izni gerekir mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. macOS'ta 69 (TFTP) ve 21 (FTP) portlarını açmak için root ya da sudo gerekmez."}},{"@type":"Question","name":"Cihaz Mac'e bağlanamıyor, ne yapmalıyım?","acceptedAnswer":{"@type":"Answer","text":"Önce cihazla Mac'in aynı ağda olduğunu ve komutta doğru IP adresinin kullanıldığını kontrol edin. macOS Güvenlik Duvarı açıksa Sistem Ayarları → Ağ → Güvenlik Duvarı'nda EYFlash'a gelen bağlantı izni verin."}},{"@type":"Question","name":"Hangi cihazlar destekleniyor?","acceptedAnswer":{"@type":"Answer","text":"TFTP ya da FTP istemcisi olan her cihaz EYFlash'tan dosya çekebilir. Cisco, Huawei, H3C, Juniper, Aruba, MikroTik, FortiGate ve EdgeRouter için hazır komutlar uygulamada; diğer cihazlar için genel URL biçimi verilir."}},{"@type":"Question","name":"EYFlash nasıl güncellenir?","acceptedAnswer":{"@type":"Answer","text":"EYFlash açılışta yeni sürümü denetler; yeni sürüm varsa sürüm notlarını gösterir ve tek tıkla kurar. Elle denetlemek için EYFlash menüsünden Güncellemeleri Denetle…'yi seçin."}},{"@type":"Question","name":"Hangi Mac'lerde çalışır?","acceptedAnswer":{"@type":"Answer","text":"macOS 14 Sonoma ve sonrasını çalıştıran tüm Apple Silicon ve Intel Mac'lerde çalışır (universal uygulama)."}}]}</script>
 </head>
@@ -127,9 +128,31 @@
       </div>
     </section>
 
+    <section class="section app-section showcase wide" style="--a:#ffc93c;--a2:#3b9ee8" aria-labelledby="vitrin">
+      <div class="app-grid">
+        <div class="app-copy">
+          <div class="section-head reveal">
+            <p class="kicker">02 — Tanıtım</p>
+            <h2 id="vitrin">31 saniyede EYFlash</h2>
+          </div>
+          <p class="summary reveal">Tek tıkla TFTP ve FTP sunucusu; firmware dosyasını sürükleyip bırakın, Cisco&#39;dan FortiGate&#39;e 10 üretici için hazır cihaz komutunu kopyalayın, cihaz dosyayı çekerken ilerlemeyi ve hızı canlı izleyin.</p>
+          <p class="summary reveal">Cihazlardan gelen yapılandırma yedekleri doğrudan Mac&#39;inize kaydedilir; sunucu çalışırken Mac uykuya geçmez. EYFlash ücretsizdir; macOS 14 ve üzeri sürümlerde çalışır.</p>
+        </div>
+        
+      <div class="visual reveal video-visual" style="--d:.1s">
+        <div class="video-frame" data-video style="--ar:16 / 9;--vw:960px">
+          <button type="button" class="video-play" aria-label="Videoyu oynat"><span></span>İzle · 0:31</button>
+          <video controls playsinline preload="none" poster="/assets/video/eyflash-tanitim.jpg" title="EYFlash tanıtım videosu">
+            <source src="/assets/video/eyflash-tanitim.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      </div>
+    </section>
+
     <section class="section app-section" style="--a:#ffc93c" aria-labelledby="ayrintilar">
       <div class="section-head reveal">
-        <p class="kicker">02 — Ayrıntılar</p>
+        <p class="kicker">03 — Ayrıntılar</p>
         <h2 id="ayrintilar">Yakından bakış</h2>
       </div>
       <div class="about-grid">
@@ -157,7 +180,7 @@
 
     <section class="section app-section" style="--a:#ffc93c" aria-labelledby="sss">
       <div class="section-head reveal">
-        <p class="kicker">03 — Sık sorulanlar</p>
+        <p class="kicker">04 — Sık sorulanlar</p>
         <h2 id="sss">Sorular &amp; cevaplar</h2>
       </div>
       <div class="faq">
@@ -174,7 +197,7 @@
 
     <section class="section" aria-labelledby="diger">
       <div class="section-head reveal">
-        <p class="kicker">04 — Diğer uygulamalar</p>
+        <p class="kicker">05 — Diğer uygulamalar</p>
         <h2 id="diger">Bunlara da göz atın.</h2>
       </div>
       <div class="cards cards-3">

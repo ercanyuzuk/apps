@@ -250,6 +250,16 @@ export const APPS = [
       { t: "Canlı aktarımlar", d: "Her aktarımın ilerlemesi, hızı ve süresi; sunucu olayları için ayrıntılı günlük." },
       { t: "Güvenli varsayılanlar", d: "Sunucu klasörü dışına çıkılamaz, FTP bounce engellenir, istenirse yalnızca okuma modu." }
     ],
+    showcase: {
+      kicker: "Tanıtım",
+      h: "31 saniyede EYFlash",
+      p: [
+        "Tek tıkla TFTP ve FTP sunucusu; firmware dosyasını sürükleyip bırakın, Cisco'dan FortiGate'e 10 üretici için hazır cihaz komutunu kopyalayın, cihaz dosyayı çekerken ilerlemeyi ve hızı canlı izleyin.",
+        "Cihazlardan gelen yapılandırma yedekleri doğrudan Mac'inize kaydedilir; sunucu çalışırken Mac uykuya geçmez. EYFlash ücretsizdir; macOS 14 ve üzeri sürümlerde çalışır."
+      ],
+      visual: "video",
+      video: { src: "/assets/video/eyflash-tanitim.mp4", poster: "/assets/video/eyflash-tanitim.jpg", duration: "PT31S", uploaded: "2026-11-10", label: "İzle · 0:31", aspect: "16 / 9" }
+    },
     requirements: ["macOS 14+", "Apple Silicon & Intel"],
     price: "Ücretsiz",
     download: {
