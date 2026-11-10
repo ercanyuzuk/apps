@@ -344,6 +344,16 @@ export const APPS = [
       { t: "Bilgiler cihazda", d: "Giriş bilgileri yalnızca cihazınızda saklanır; geliştiriciye ya da üçüncü taraflara gönderilmez." },
       { t: "Apple TV ve iPhone", d: "Tek uygulama, iki cihaz: Apple TV ve iPhone sürümleri App Store'da ücretsiz." }
     ],
+    showcase: {
+      kicker: "Tanıtım",
+      h: "39 saniyede eyiptv",
+      p: [
+        "Kısa bir turla eyiptv: M3U adresinizi ya da kullanıcı bilgilerinizi girin, kategoriden kanalı seçip izleyin; telefonu çevirince tam ekran, tek dokunuşla kanal değiştirme, sezon sezon filmler ve diziler, hızlı arama.",
+        "eyiptv içerik sağlamaz; yalnızca kendi servis sağlayıcınızın yayınlarını oynatır."
+      ],
+      visual: "video",
+      video: { src: "/assets/video/eyiptv-tanitim.mp4", poster: "/assets/video/eyiptv-tanitim.jpg", duration: "PT39S", uploaded: "2026-11-10", label: "İzle · 0:39", aspect: "9 / 16" }
+    },
     requirements: ["tvOS 26.2+", "iOS 26.2+"],
     price: "Ücretsiz",
     note: "eyiptv herhangi bir yayın, kanal veya içerik sağlamaz; yasal olarak abone olduğunuz servisin bilgileriyle çalışır.",
