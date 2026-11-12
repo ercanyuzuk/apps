@@ -422,14 +422,14 @@ export const APPS = [
   {
     id: "eynetscanner",
     name: "EYNetScanner",
-    tagline: "7 ağ aracı. Tek temiz uygulama.",
+    tagline: "8 ağ aracı. Tek temiz uygulama.",
     summary:
-      "Ping, port tarama, subnet tarama, DNS, IP bilgisi, traceroute ve canlı bağlantı izleme — iPhone'unuzda. Hesap yok, reklam yok, takip yok.",
+      "Ping, port tarama, subnet tarama, DNS, IP bilgisi, traceroute, hız testi ve canlı bağlantı izleme — iPhone'unuzda. Hesap yok, reklam yok, takip yok.",
     icon: "/assets/icons/eynetscanner.png",
     platforms: ["iPhone"],
     accent: "#22d3ee",
     accent2: "#a855f7",
-    version: "1.0",
+    version: "1.2",
     category: "UtilitiesApplication",
     os: "iOS 26.2",
     appStoreId: "6823558559",
@@ -438,7 +438,7 @@ export const APPS = [
     seo: {
       title: "EYNetScanner — iPhone için ping, port ve ağ tarayıcı",
       description:
-        "EYNetScanner: iPhone için ücretsiz ağ araçları. Ping, port tarama, subnet tarama, DNS sorgusu, IP bilgisi, traceroute ve bağlantı izleme. Reklamsız, takipsiz."
+        "EYNetScanner: iPhone için ücretsiz ağ araçları. Ping, port tarama, subnet tarama, DNS sorgusu, IP bilgisi, traceroute, hız testi ve bağlantı izleme. Reklamsız, takipsiz."
     },
     shots: {
       phone: [
@@ -446,7 +446,8 @@ export const APPS = [
         "/assets/shots/netscanner-02_IMG_4524.jpg",
         "/assets/shots/netscanner-03_IMG_4522.jpg",
         "/assets/shots/netscanner-04_IMG_4523.jpg",
-        "/assets/shots/netscanner-05_IMG_4525.jpg"
+        "/assets/shots/netscanner-05_IMG_4525.jpg",
+        "/assets/shots/netscanner-06_SpeedTest.jpg"
       ]
     },
     features: [
@@ -455,13 +456,16 @@ export const APPS = [
       { t: "Subnet Scanner", d: "Bulunduğunuz alt ağı otomatik algılar ve aktif cihazları bulur." },
       { t: "DNS Lookup", d: "İleri (A/AAAA) ve ters DNS sorguları." },
       { t: "IP Info", d: "Genel IP'niz ya da herhangi bir IP'nin konumu, ISS'si ve saat dilimi." },
-      { t: "Traceroute & Monitor", d: "Atlama atlama yol analizi ve sürekli bağlantı/gecikme izleme." }
+      { t: "Traceroute & Monitor", d: "Atlama atlama yol analizi ve sürekli bağlantı/gecikme izleme." },
+      { t: "Hız Testi", d: "Yeni: indirme ve yükleme hızı, gecikme ve jitter. Yaklaşık 20 saniyede, Apple veya Cloudflare sunucularıyla." },
+      { t: "Paylaş & CSV", d: "Yeni: sonuçları metin olarak paylaşın; port, subnet ve traceroute sonuçlarını CSV olarak dışa aktarın." },
+      { t: "Kendi Sıranız", d: "Yeni: ana ekrandaki araçları basılı tutup sürükleyerek en çok kullandığınızı en üste alın." }
     ],
     showcase: {
       kicker: "Tanıtım",
       h: "50 saniyede EYNetScanner",
       p: [
-        "Kısa bir turla yedi araç: ping ile gecikme ve paket kaybı, port tarayıcı, DNS sorgusu, IP bilgisi, traceroute ve canlı bağlantı izleme.",
+        "Kısa bir turla sekiz araç: ping ile gecikme ve paket kaybı, port tarayıcı, DNS sorgusu, IP bilgisi, canlı bağlantı izleme ve yeni hız testi; ayrıca sonuçları paylaşmak ve araçları kendi sıranıza dizmek.",
         "Hesap açmanız gerekmez, reklam ya da takip yoktur; uygulamayı açıp hemen ağınızı incelemeye başlayabilirsiniz."
       ],
       visual: "video",
@@ -478,7 +482,7 @@ export const APPS = [
       {
         h: "Cebinizde ağ araç çantası",
         p: [
-          "EYNetScanner, ağ sorunlarını giderirken en çok ihtiyaç duyulan yedi aracı tek bir iPhone uygulamasında toplar. Sahada bir switch'in ayakta olup olmadığını kontrol etmek, evdeki ağda hangi cihazların bağlı olduğunu görmek ya da bir sunucunun portlarını denetlemek için bilgisayar açmanız gerekmez."
+          "EYNetScanner, ağ sorunlarını giderirken en çok ihtiyaç duyulan sekiz aracı tek bir iPhone uygulamasında toplar. Sahada bir switch'in ayakta olup olmadığını kontrol etmek, evdeki ağda hangi cihazların bağlı olduğunu görmek ya da bir sunucunun portlarını denetlemek için bilgisayar açmanız gerekmez."
         ]
       },
       {
@@ -494,6 +498,18 @@ export const APPS = [
         ]
       },
       {
+        h: "Hız testi",
+        p: [
+          "Hız Testi indirme ve yükleme hızınızı, gecikmeyi ve jitter değerini ölçer. Test yaklaşık 20 saniye sürer ve birkaç yüz MB veri kullanabilir; hücresel bağlantıda buna dikkat edin. Ölçüm için Apple'ın networkQuality sunucusu kullanılır, ulaşılamazsa Cloudflare devreye girer."
+        ]
+      },
+      {
+        h: "Paylaşın, dışa aktarın, düzenleyin",
+        p: [
+          "Sonuçları metin olarak paylaşabilir; port tarama, subnet tarama ve traceroute sonuçlarını CSV olarak dışa aktarabilirsiniz. Ana ekrandaki araçları basılı tutup sürükleyerek kendi sıranıza göre dizebilirsiniz."
+        ]
+      },
+      {
         h: "DNS, IP bilgisi ve traceroute",
         p: [
           "DNS Lookup ile alan adlarının A/AAAA kayıtlarını ve IP adreslerinin ters DNS kaydını sorgulayın. IP Info, genel IP adresinizi ya da girdiğiniz herhangi bir IP'nin konumunu, servis sağlayıcısını ve saat dilimini gösterir. Traceroute, hedefe giden yolu atlama atlama çıkarır."
@@ -503,10 +519,11 @@ export const APPS = [
     faq: [
       { q: "EYNetScanner ücretli mi?", a: "Hayır. EYNetScanner App Store'da ücretsizdir; reklam ve uygulama içi takip yoktur." },
       { q: "Hangi iOS sürümü gerekiyor?", a: "iOS 26.2 veya sonrası gerekir." },
+      { q: "Hız Testi ne kadar veri kullanır?", a: "Bir test yaklaşık 20 saniye sürer ve birkaç yüz MB veri kullanabilir. Hücresel bağlantıdayken dikkat edin. Test verisi Apple veya Cloudflare sunucularıyla değiş tokuş edilir; sonuçlar saklanmaz." },
       { q: "Neden Yerel Ağ izni istiyor?", a: "Subnet tarama ve Bonjour ile cihaz keşfi için iOS'un Yerel Ağ iznine ihtiyaç vardır. İzin vermezseniz diğer araçlar çalışmaya devam eder." },
       { q: "Hesap açmam gerekiyor mu?", a: "Hayır. Hesap, kayıt ya da giriş yoktur; uygulamayı açıp hemen kullanabilirsiniz." }
     ],
-    marquee: ["Ping", "Port Scan", "Traceroute", "DNS"]
+    marquee: ["Ping", "Port Scan", "Hız Testi", "DNS"]
   },
   {
     id: "eyrack",
