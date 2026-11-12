@@ -459,13 +459,13 @@ export const APPS = [
     ],
     showcase: {
       kicker: "Tanıtım",
-      h: "37 saniyede EYNetScanner",
+      h: "50 saniyede EYNetScanner",
       p: [
         "Kısa bir turla yedi araç: ping ile gecikme ve paket kaybı, port tarayıcı, DNS sorgusu, IP bilgisi, traceroute ve canlı bağlantı izleme.",
         "Hesap açmanız gerekmez, reklam ya da takip yoktur; uygulamayı açıp hemen ağınızı incelemeye başlayabilirsiniz."
       ],
       visual: "video",
-      video: { src: "/assets/video/eynetscanner-tanitim.mp4", poster: "/assets/video/eynetscanner-tanitim.jpg", duration: "PT37S", uploaded: "2026-11-09", label: "İzle · 0:37", aspect: "9 / 16" }
+      video: { src: "/assets/video/eynetscanner-tanitim.mp4", poster: "/assets/video/eynetscanner-tanitim.jpg", duration: "PT50S", uploaded: "2026-11-12", label: "İzle · 0:50", aspect: "9 / 16" }
     },
     requirements: ["iOS 26.2+"],
     price: "Ücretsiz",
