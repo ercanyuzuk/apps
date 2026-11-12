@@ -429,7 +429,7 @@ export const APPS = [
     platforms: ["iPhone"],
     accent: "#22d3ee",
     accent2: "#a855f7",
-    version: "1.2",
+    version: "1.1",
     category: "UtilitiesApplication",
     os: "iOS 26.2",
     appStoreId: "6823558559",
